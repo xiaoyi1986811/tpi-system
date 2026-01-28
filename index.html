@@ -1,88 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
  <head>
-  <!--
-═══════════════════════════════════════════════════════════════════════════════
-  TPI系统修复记录 - 第30版：GitHub API云端同步版
-═══════════════════════════════════════════════════════════════════════════════
-
-修复批次：第7批次
-修复日期：2026-01-28
-修复目标：
-1. ✅ 移除Firebase依赖，改用GitHub API作为云端存储
-2. ✅ 实现基于日期键的嵌套JSON存储结构
-3. ✅ 每日空白页逻辑：自动检测并重置UI
-4. ✅ 落盘保护：同步前强制保存DOM数据
-5. ✅ 全量导出修复：导出完整历史数据
-6. ✅ 新增云端同步设置面板
-7. ✅ 支持杂事记录多格式导出（Markdown/TXT/PDF）
-
-核心修复内容：
-
-【GitHub API同步】
-1. ✅ 使用Personal Access Token进行Bearer认证
-2. ✅ 实现GET->合并->PUT完整写入流程
-3. ✅ 处理Base64编码，确保中文不乱码
-4. ✅ 存储结构：{"2026-01-28": {数据}, "2026-01-27": {数据}}
-
-【每日空白页逻辑】
-1. ✅ 启动时加载云端数据
-2. ✅ 比对当前日期
-3. ✅ 无今日数据则清空UI
-4. ✅ 有今日数据则填充内容
-
-【落盘保护】
-1. ✅ 同步前强制执行saveCurrentDataToLocalStorage()
-2. ✅ 确保DOM最新输入值被抓取
-
-【全量导出】
-1. ✅ 移除字段白名单
-2. ✅ 导出完整tpi_db.json对象
-3. ✅ 包含所有历史日期数据
-
-【UI调整】
-1. ✅ 新增"云端同步Cloud Sync"模块
-2. ✅ 位置：每日签到和杂事记录之间
-3. ✅ 输入框：Token/用户名/仓库名/分支名
-4. ✅ 操作按钮：立即同步/下载历史
-5. ✅ 详细状态反馈
-
-【横屏提示优化】
-1. ✅ 显示时间从5秒缩短到3秒
-2. ✅ 添加"不再提示"复选框
-3. ✅ 使用localStorage记住用户选择
-4. ✅ 点击"知道了"立即消失
-5. ✅ 优化提示样式，更加美观友好
-
-【多格式导出功能】
-1. ✅ "📄 MD"：导出为Markdown格式（推荐）
-2. ✅ "📝 TXT"：导出为纯文本格式
-3. ✅ "📑 PDF"：提示使用MD/TXT后转换（中文友好）
-4. ✅ 支持批量导出所有日期的记录
-
-
-═══════════════════════════════════════════════════════════════════════════════
-=== 第7批次完整性声明 ===
-1. GitHub同步：✅ 完整实现GET/PUT流程
-2. 每日空白页：✅ 自动检测并重置
-3. 落盘保护：✅ 同步前强制保存
-4. 全量导出：✅ 导出完整历史
-5. 横屏提示：✅ 3秒自动消失 + "不再提示"选项 + 记住用户选择
-6. 导出功能：✅ 支持Markdown/TXT/PDF多种格式
-7. 文件完整：✅ 保留所有历史功能，基于草稿29完整代码
-
-═══════════════════════════════════════════════════════════════════════════════
-
-【历史修复记录】
-第6批次：横屏提示优化 + 杂事记录多格式导出
-第5批次：完全修复版（真实数据+功能全面可用）
-第4批次：趋势分析完善 + 杂事记录模块
-第3批次：性能优化与细节完善
-第2批次：分数看板与布局优化
-第1批次：暗黑模式与基础功能修复
-
-═══════════════════════════════════════════════════════════════════════════════
--->
   
   
   <!-- 性能优化: DNS预解析和预连接 -->
@@ -202,6 +120,85 @@
                     content.style.display = section.classList.contains('collapsed') ? 'none' : 'block';
                 }
             }
+        };
+
+        // ═══════════════════════════════════════════════════════════════════
+        // 全局通知函数定义 (修复 showNotification is not defined)
+        // ═══════════════════════════════════════════════════════════════════
+        window.showNotification = function(message, type) {
+            // 创建通知容器(如果不存在)
+            let container = document.getElementById('notification-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notification-container';
+                container.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 10000;
+                    max-width: 400px;
+                `;
+                document.body.appendChild(container);
+            }
+
+            // 创建通知元素
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                font-size: 14px;
+                font-weight: 500;
+                animation: slideIn 0.3s ease-out;
+                cursor: pointer;
+            `;
+            notification.textContent = message;
+
+            // 添加动画样式
+            if (!document.getElementById('notification-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'notification-keyframes';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(400px);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                    @keyframes slideOut {
+                        from {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                        to {
+                            transform: translateX(400px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            container.appendChild(notification);
+
+            // 点击关闭
+            notification.addEventListener('click', function() {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            });
+
+            // 3秒后自动消失
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         };
   </script>
   <link href="https://cdn.jsdelivr.net/npm/heatmap-calendar@1.0.0/dist/heatmap-calendar.css" rel="stylesheet"/>
@@ -948,41 +945,24 @@ window.exportReportComplete = function(format) {
     }
 };
 
-// 2. 从云端加载函数
+// 2. 从云端加载函数 (使用GitHub)
 window.loadFromCloudComplete = function() {
     console.log('🔵 [loadFromCloudComplete] 从云端加载功能被调用');
     console.log('🔵 [loadFromCloudComplete] 执行时间:', new Date().toLocaleString());
     
     try {
-        // 检查Firebase是否可用
-        console.log('🔍 [loadFromCloudComplete] 检查Firebase可用性...');
-        if (!window.checkFirebaseAvailable || !window.false /* Firebase已禁用 */) {
-            console.warn('⚠️ [loadFromCloudComplete] Firebase未配置或不可用');
-            
-            return;
-        }
-
-        console.log('✅ [loadFromCloudComplete] Firebase可用');
-
-        // 检查是否有loadFromFirebase函数（多路径检查）
-        if (window.loadFromFirebase && typeof window.loadFromFirebase === 'function') {
-            console.log('✅ [loadFromCloudComplete] 找到loadFromFirebase函数，准备调用');
-            window.loadFromFirebase();
-        } else if (window.TPI && window.TPI.loadFromFirebase && typeof window.TPI.loadFromFirebase === 'function') {
-            console.log('✅ [loadFromCloudComplete] 找到TPI.loadFromFirebase函数，准备调用');
-            window.TPI.loadFromFirebase();
+        // 检查GitHub是否配置
+        if (typeof window.loadFromGitHub === 'function') {
+            console.log('✅ [loadFromCloudComplete] 调用GitHub下载功能');
+            window.loadFromGitHub();
         } else {
-            console.error('❌ [loadFromCloudComplete] 未找到loadFromFirebase函数');
-            console.log('🔍 [loadFromCloudComplete] 可用的函数:', {
-                'window.loadFromFirebase': typeof window.loadFromFirebase,
-                'window.TPI.loadFromFirebase': window.TPI ? typeof window.TPI.loadFromFirebase : 'TPI不存在'
-            });
-            alert('⚠️ 云端加载功能初始化中\n\n请稍等片刻后重试\n\n如果持续出现此问题，请刷新页面');
+            console.error('❌ [loadFromCloudComplete] loadFromGitHub函数未定义');
+            showNotification('❌ GitHub下载功能未初始化', 'error');
         }
     } catch (error) {
         console.error('❌ [loadFromCloudComplete] 从云端加载失败:', error);
         console.error('❌ [loadFromCloudComplete] 错误堆栈:', error.stack);
-        alert('❌ 加载失败\n\n错误信息: ' + error.message + '\n\n请查看控制台获取详细信息');
+        showNotification(`❌ 加载失败: ${error.message}`, 'error');
     }
 };
 
@@ -14803,131 +14783,8 @@ if (data.futureRadarV3) {
             }
 
             // ==================== 数据导出功能 ====================
-// ==================== 🔥 Firebase 云端同步功能 ====================
+// ==================== Firebase已移除，请使用GitHub同步功能 ====================
 
-            /**
-             * 保存到 Firebase 云端
-             */
-            function saveToFirebase() {
-                if (!window.tpiDb) {
-                    showNotification('⚠️ 云端服务未连接，请检查网络', 'error');
-                    return;
-                }
-
-                // 检查用户是否已登录
-                if (!auth || !auth.currentUser) {
-                    showNotification('⚠️ 请先登录账号才能使用云端同步', 'warning');
-                    return;
-                }
-
-                try {
-                    const data = collectFormData();
-                    const dateInput = document.getElementById('date-input')?.value;
-
-                    if (!dateInput) {
-                        showNotification('⚠️ 日期不能为空', 'warning');
-                        return;
-                    }
-
-                    showNotification('⏳ 正在同步到云端...', 'info');
-
-                    // 使用当前登录用户的UID作为路径
-                    const userId = auth.currentUser.uid;
-                    const dbRef = window.tpiRef(window.tpiDb, `users/${userId}/${dateInput}`);
-
-                    window.tpiSet(dbRef, data)
-                        .then(() => {
-                            // 增强的成功提示
-                            const tpiScore = document.getElementById('tpi-total-score')?.textContent || '0';
-                            showModal({
-                                type: 'success',
-                                title: '☁️ 云端同步成功！',
-                                message: `
-                                    <div style="text-align: left;">
-                                        <div style="margin: 15px 0; padding: 15px; background: #f0fdf4; border-left: 4px solid #10b981; border-radius: 8px;">
-                                            <p style="margin: 0;"><strong>✅ 同步完成</strong></p>
-                                            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 0.95em;">
-                                                <li>日期：${dateInput}</li>
-                                                <li>TPI分数：${tpiScore}</li>
-                                                <li>时间：${new Date().toLocaleTimeString('zh-CN')}</li>
-                                            </ul>
-                                        </div>
-
-                                        <p style="color: #6b7280; font-size: 0.9em; margin: 10px 0;">
-                                            💡 数据已安全保存到云端，您可以在其他设备上访问这些数据。
-                                        </p>
-
-                                        <p style="color: #6b7280; font-size: 0.9em; margin: 10px 0;">
-                                            📌 同时已自动保存到本地作为备份。
-                                        </p>
-                                    </div>
-                                `,
-                                confirmText: '知道了',
-                                autoClose: 3000 // 3秒后自动关闭
-                            });
-
-                            // 同时保存一份到本地作为备份
-                            saveToLocalStorage();
-                        })
-                        .catch((error) => {
-                            console.error('Firebase保存失败:', error);
-                            showNotification('❌ 云端同步失败: ' + error.message, 'error');
-                        });
-
-                } catch (error) {
-                    console.error('同步错误:', error);
-                    showNotification('❌ 准备数据时出错', 'error');
-                }
-            }
-
-            /**
-             * 从 Firebase 云端加载
-             */
-            function loadFromFirebase() {
-                if (!window.tpiDb) {
-                    showNotification('⚠️ 云端服务未连接，请检查网络', 'error');
-                    return;
-                }
-
-                // 检查用户是否已登录
-                if (!auth || !auth.currentUser) {
-                    showNotification('⚠️ 请先登录账号才能从云端加载数据', 'warning');
-                    return;
-                }
-
-                const dateInput = document.getElementById('date-input')?.value;
-                if (!dateInput) {
-                    showNotification('⚠️ 请先选择要加载的日期', 'warning');
-                    return;
-                }
-
-                showNotification('⏳ 正在从云端拉取...', 'info');
-
-                // 使用当前登录用户的UID作为路径
-                const userId = auth.currentUser.uid;
-                const dbRef = window.tpiRef(window.tpiDb);
-                window.tpiGet(window.tpiChild(dbRef, `users/${userId}/${dateInput}`))
-                    .then((snapshot) => {
-                        if (snapshot.exists()) {
-                            const data = snapshot.val();
-                            restoreFormData(data);
-                            state.formData = data;
-
-                            // 重新计算所有分数
-                            setTimeout(() => {
-                                calculateAllScores();
-                            }, 100);
-
-                            
-                        } else {
-                            showNotification('⚠️ 云端没有该日期的数据', 'warning');
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Firebase加载失败:', error);
-                        showNotification('❌ 拉取失败: ' + error.message, 'error');
-                    });
-            }
             /**
              * 导出数据 (增强文件名安全性)
              */
@@ -20013,26 +19870,7 @@ window.addEventListener('resize', function() {
         };
     }
 
-    // Firebase云端同步
-    if (!window.TPI.saveToFirebase) {
-        window.TPI.saveToFirebase = function() {
-            try {
-                
-            } catch (e) {
-                console.error('云端保存失败:', e);
-            }
-        };
-    }
-
-    if (!window.TPI.loadFromFirebase) {
-        window.TPI.loadFromFirebase = function() {
-            try {
-                
-            } catch (e) {
-                console.error('云端加载失败:', e);
-            }
-        };
-    }
+    // Firebase已移除，请使用GitHub同步功能
 
     // 高级分析工具的Fallback
     if (typeof window.TPIAdvanced === 'undefined') {
@@ -22013,8 +21851,7 @@ window.addEventListener('resize', function() {
 (function() {
     'use strict';
 
-    // checkFirebaseAvailable 函数已在早期初始化脚本中定义（第3702行），此处不再重复定义
-
+    
     // 安全的Firebase保存
     window.safeFirebaseSave = function() {
         try {
@@ -24738,6 +24575,19 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(() => {
         ScoreDashboard.update();
     }, 5000);
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // GitHub自动加载和每日空白页逻辑
+    // ═══════════════════════════════════════════════════════════════════
+    console.log('[初始化] 执行GitHub自动加载');
+    // 延迟500ms执行，确保所有元素都已加载
+    setTimeout(() => {
+        if (typeof window.autoLoadFromGitHub === 'function') {
+            window.autoLoadFromGitHub();
+        } else {
+            console.warn('[初始化] autoLoadFromGitHub函数未定义');
+        }
+    }, 500);
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -26250,6 +26100,7 @@ if (typeof window.TPI !== 'undefined') {
     window.syncToGitHub = async function() {
         console.log('[GitHub] 开始同步到云端');
         updateSyncStatus('正在同步...');
+        showNotification('⏳ 开始同步到云端...', 'info');
         
         try {
             const config = getGitHubConfig();
@@ -26281,6 +26132,7 @@ if (typeof window.TPI !== 'undefined') {
             // Step 1: 获取现有文件的SHA
             updateSyncStatus('正在获取文件SHA...');
             console.log('[GitHub] Step 1: 获取文件SHA');
+            showNotification('📡 正在获取文件SHA...', 'info');
             
             const getUrl = `https://api.github.com/repos/${config.username}/${config.repo}/contents/tpi_db.json?ref=${config.branch}`;
             const getResponse = await fetch(getUrl, {
@@ -26313,43 +26165,84 @@ if (typeof window.TPI !== 'undefined') {
             // Step 2: 合并数据
             updateSyncStatus('正在合并数据...');
             console.log('[GitHub] Step 2: 合并数据');
+            showNotification('🔄 正在合并数据...', 'info');
             
             existingData[today] = todayData;
             console.log('[GitHub] 数据已合并，总日期数:', Object.keys(existingData).length);
             
-            // Step 3: PUT更新文件
+            // Step 3: PUT更新文件（带409冲突重试）
             updateSyncStatus('正在提交到GitHub...');
             console.log('[GitHub] Step 3: 提交到GitHub');
+            showNotification('📤 正在提交到GitHub...', 'info');
             
-            const newContent = JSON.stringify(existingData, null, 2);
-            const encodedContent = base64Encode(newContent);
-            
-            const putUrl = `https://api.github.com/repos/${config.username}/${config.repo}/contents/tpi_db.json`;
-            const putBody = {
-                message: `Update TPI data for ${today}`,
-                content: encodedContent,
-                branch: config.branch
+            const attemptPut = async (currentSha) => {
+                const newContent = JSON.stringify(existingData, null, 2);
+                const encodedContent = base64Encode(newContent);
+                
+                const putUrl = `https://api.github.com/repos/${config.username}/${config.repo}/contents/tpi_db.json`;
+                const putBody = {
+                    message: `Update TPI data for ${today}`,
+                    content: encodedContent,
+                    branch: config.branch
+                };
+                
+                if (currentSha) {
+                    putBody.sha = currentSha;
+                }
+                
+                return await fetch(putUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${config.token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(putBody)
+                });
             };
             
-            if (sha) {
-                putBody.sha = sha;
-            }
+            // 第一次尝试提交
+            let putResponse = await attemptPut(sha);
             
-            const putResponse = await fetch(putUrl, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${config.token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(putBody)
-            });
+            // 【SHA冲突处理】如果遇到409错误，重新获取SHA并重试
+            if (putResponse.status === 409) {
+                console.warn('[GitHub] 检测到SHA冲突(409)，正在重新获取SHA并重试...');
+                showNotification('⚠️ 检测到冲突，正在重试...', 'warning');
+                
+                // 重新获取最新SHA
+                const retryGetResponse = await fetch(getUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${config.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (retryGetResponse.ok) {
+                    const retryFileInfo = await retryGetResponse.json();
+                    const newSha = retryFileInfo.sha;
+                    
+                    // 重新合并数据
+                    const retryContent = base64Decode(retryFileInfo.content);
+                    const retryExistingData = JSON.parse(retryContent);
+                    retryExistingData[today] = todayData;
+                    existingData = retryExistingData;
+                    
+                    console.log('[GitHub] 重新获取SHA:', newSha);
+                    console.log('[GitHub] 重新尝试提交...');
+                    
+                    // 第二次尝试提交
+                    putResponse = await attemptPut(newSha);
+                } else {
+                    throw new Error('重新获取SHA失败');
+                }
+            }
             
             if (putResponse.ok) {
                 const result = await putResponse.json();
                 console.log('[GitHub] 同步成功:', result);
                 updateSyncStatus(`同步成功！最后同步: ${today}`, 'success');
-                showNotification('success', '同步成功', `数据已成功上传到GitHub\\n日期: ${today}\\n提交: ${result.commit.sha.substring(0, 7)}`);
+                showNotification(`✅ 同步成功！数据已上传到GitHub (${today})`, 'success');
             } else {
                 const errorData = await putResponse.json();
                 throw new Error(`提交失败: ${errorData.message}`);
@@ -26358,7 +26251,7 @@ if (typeof window.TPI !== 'undefined') {
         } catch (error) {
             console.error('[GitHub] 同步失败:', error);
             updateSyncStatus(`同步失败: ${error.message}`, 'error');
-            showNotification('error', '同步失败', error.message);
+            showNotification(`❌ 同步失败: ${error.message}`, 'error');
         }
     };
     
@@ -26368,6 +26261,7 @@ if (typeof window.TPI !== 'undefined') {
     window.loadFromGitHub = async function() {
         console.log('[GitHub] 开始从云端下载');
         updateSyncStatus('正在下载...');
+        showNotification('⏳ 开始从云端下载数据...', 'info');
         
         try {
             const config = getGitHubConfig();
@@ -26375,6 +26269,7 @@ if (typeof window.TPI !== 'undefined') {
             // 获取文件内容
             updateSyncStatus('正在获取云端数据...');
             console.log('[GitHub] 正在获取云端数据');
+            showNotification('📡 正在获取云端数据...', 'info');
             
             const getUrl = `https://api.github.com/repos/${config.username}/${config.repo}/contents/tpi_db.json?ref=${config.branch}`;
             const response = await fetch(getUrl, {
@@ -26402,6 +26297,7 @@ if (typeof window.TPI !== 'undefined') {
             // 保存到localStorage
             updateSyncStatus('正在保存到本地...');
             console.log('[GitHub] 正在保存到本地');
+            showNotification('💾 正在保存到本地...', 'info');
             
             let savedCount = 0;
             for (const [date, data] of Object.entries(cloudData)) {
@@ -26420,20 +26316,20 @@ if (typeof window.TPI !== 'undefined') {
                 
                 // 填充UI (DOM热更新)
                 fillUIWithData(cloudData[today]);
+                showNotification(`✅ 下载成功！已获取${savedCount}天数据，今日有数据已填充`, 'success');
             } else {
                 console.log('[GitHub] 今日无数据，重置UI为空白');
                 updateSyncStatus(`下载成功！共${savedCount}天数据，今日无数据(已重置)`, 'success');
                 
                 // 重置UI为空白
                 resetUIToBlank();
+                showNotification(`✅ 下载成功！已获取${savedCount}天数据，今日无数据(已重置UI)`, 'success');
             }
-            
-            showNotification('success', '下载成功', `已从云端下载${savedCount}天的数据\\n今日数据: ${cloudData[today] ? '有' : '无'}`);
             
         } catch (error) {
             console.error('[GitHub] 下载失败:', error);
             updateSyncStatus(`下载失败: ${error.message}`, 'error');
-            showNotification('error', '下载失败', error.message);
+            showNotification(`❌ 下载失败: ${error.message}`, 'error');
         }
     };
     
@@ -26499,16 +26395,74 @@ if (typeof window.TPI !== 'undefined') {
     // ═══════════════════════════════════════════════════════════════════
     // 11. 自动加载配置和数据
     // ═══════════════════════════════════════════════════════════════════
-    window.autoLoadFromGitHub = function() {
-        console.log('[GitHub] 自动加载检查');
+    // ═══════════════════════════════════════════════════════════════════
+    // 11. 页面启动时自动加载和每日空白页逻辑
+    // ═══════════════════════════════════════════════════════════════════
+    window.autoLoadFromGitHub = async function() {
+        console.log('[GitHub] 页面启动 - 开始自动加载检查');
         
         const config = loadGitHubConfig();
-        if (config && config.token && config.username && config.repo) {
-            console.log('[GitHub] 已配置，执行自动加载');
-            // 不自动下载，只提示用户可以手动下载
-            updateSyncStatus('已配置，可以手动同步', 'success');
-        } else {
+        if (!config || !config.token || !config.username || !config.repo) {
             console.log('[GitHub] 未配置，跳过自动加载');
+            return;
+        }
+        
+        console.log('[GitHub] 已配置，执行自动加载和每日空白页逻辑');
+        showNotification('🔄 正在从GitHub加载数据...', 'info');
+        
+        try {
+            // 获取云端数据
+            const getUrl = `https://api.github.com/repos/${config.username}/${config.repo}/contents/tpi_db.json?ref=${config.branch}`;
+            const response = await fetch(getUrl, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${config.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    console.log('[GitHub] 云端文件不存在，显示空白页');
+                    resetUIToBlank();
+                    showNotification('ℹ️ 云端暂无数据，请先同步上传', 'info');
+                    return;
+                }
+                throw new Error('获取云端数据失败');
+            }
+            
+            const fileInfo = await response.json();
+            const content = base64Decode(fileInfo.content);
+            const cloudData = JSON.parse(content);
+            
+            console.log('[GitHub] 云端数据已获取，日期数:', Object.keys(cloudData).length);
+            
+            // 保存所有历史数据到localStorage
+            for (const [date, data] of Object.entries(cloudData)) {
+                const key = `tpi_data_${date}`;
+                localStorage.setItem(key, JSON.stringify(data));
+            }
+            
+            // 【每日空白页逻辑】检查今天是否有数据
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (cloudData[today]) {
+                // 今日有数据 - 填充UI
+                console.log('[GitHub] 今日有数据，填充UI');
+                fillUIWithData(cloudData[today]);
+                showNotification(`✅ 数据加载成功！今日数据已填充 (${today})`, 'success');
+                updateSyncStatus(`数据已加载 (${today})`, 'success');
+            } else {
+                // 今日无数据 - 清空UI呈现空白页
+                console.log('[GitHub] 今日无数据，清空UI呈现空白页');
+                resetUIToBlank();
+                showNotification(`ℹ️ 今日暂无数据 (${today})，已清空UI`, 'info');
+                updateSyncStatus('今日无数据，已清空', 'info');
+            }
+            
+        } catch (error) {
+            console.error('[GitHub] 自动加载失败:', error);
+            showNotification(`⚠️ 自动加载失败: ${error.message}`, 'error');
         }
     };
     
