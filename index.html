@@ -145,132 +145,522 @@
         const manifestURL = URL.createObjectURL(manifestBlob);
         document.getElementById('pwa-manifest').setAttribute('href', manifestURL);
   
-<!-- TPI系统加固补丁开始 -->
+<!-- TPI系统增强补丁开始 v31.0 -->
 <script>
-// 补丁脚本内容（从patch_tpi_system.js复制）
 (function() {
     'use strict';
     
+    // 模块映射表
     const moduleMap = {
         'ami': 'AMI', 'fer': 'FER', 'bcm': 'BCM', 'hsm': 'HSM', 
         'fli': 'FLI', 'tpi': 'TPI', 'radar': 'RADAR', 'sync': 'SYNC',
-        'export': 'EXPORT', 'import': 'IMPORT', 'misc': 'MISC'
+        'export': 'EXPORT', 'import': 'IMPORT', 'misc': 'MISC',
+        'daily': 'DAILY', 'academic': 'ACAD', 'personal': 'PERS',
+        'life': 'LIFE', 'logistics': 'LOGI', 'settings': 'SETT'
     };
     
+    // ID规范化函数
     function assignUniqueIds() {
         const elements = document.querySelectorAll('input, textarea, select');
         const idCounts = {};
         
         elements.forEach((elem, index) => {
-            if (!elem.id) {
+            if (!elem.id || !elem.id.match(/^[A-Z]+_[A-Z]+_\d{2}$/)) {
                 let moduleName = 'MISC';
                 const classes = elem.className || '';
                 const name = elem.name || '';
+                const parent = elem.closest('[class*="card"], [class*="section"], [class*="module"]');
                 
+                // 智能识别模块
                 for (const [key, value] of Object.entries(moduleMap)) {
-                    if (classes.includes(key) || name.includes(key) || elem.closest(`[class*="${key}"]`)) {
+                    if (classes.includes(key) || name.includes(key) || 
+                        elem.closest(`[class*="${key}"]`) || 
+                        elem.closest(`[id*="${key}"]`)) {
                         moduleName = value;
                         break;
                     }
                 }
                 
+                // 如果父元素有特定class，进一步优化模块识别
+                if (parent) {
+                    const parentClass = parent.className || '';
+                    if (parentClass.includes('academic')) moduleName = 'ACAD';
+                    else if (parentClass.includes('personal')) moduleName = 'PERS';
+                    else if (parentClass.includes('life')) moduleName = 'LIFE';
+                    else if (parentClass.includes('logistics')) moduleName = 'LOGI';
+                    else if (parentClass.includes('daily')) moduleName = 'DAILY';
+                    else if (parentClass.includes('settings')) moduleName = 'SETT';
+                }
+                
+                // 属性类型识别
                 let attrName = 'Field';
                 if (elem.type === 'checkbox') attrName = 'Check';
+                else if (elem.type === 'radio') attrName = 'Radio';
                 else if (elem.tagName === 'TEXTAREA') attrName = 'Text';
                 else if (elem.type === 'date') attrName = 'Date';
                 else if (elem.type === 'number') attrName = 'Num';
                 else if (elem.type === 'time') attrName = 'Time';
-                else if (name) attrName = name.replace(/[^a-zA-Z]/g, '');
+                else if (elem.tagName === 'SELECT') attrName = 'Select';
+                else if (name) attrName = name.replace(/[^a-zA-Z]/g, '').substring(0, 10) || 'Field';
                 
                 const countKey = `${moduleName}_${attrName}`;
                 idCounts[countKey] = (idCounts[countKey] || 0) + 1;
                 const index_str = String(idCounts[countKey]).padStart(2, '0');
                 
                 elem.id = `${moduleName}_${attrName}_${index_str}`;
+                
+                // 添加data-module属性便于后续检索
+                elem.dataset.module = moduleName;
             }
         });
         
-        console.log('✅ 全量ID索引建立完成');
+        console.log('✅ 增强版ID索引建立完成');
     }
     
-    const amiGlobalData = {};
-    
-    function captureAMIData() {
-        const amiElements = document.querySelectorAll('[id^="AMI_"]');
-        amiElements.forEach(elem => {
-            amiGlobalData[elem.id] = elem.value || elem.checked;
-        });
-        console.log('📥 AMI数据已抓取至全局对象');
-    }
-    
-    function forceRestoreAMIData(data) {
-        Object.keys(data).forEach(id => {
-            const elem = document.getElementById(id);
-            if (elem) {
-                if (elem.type === 'checkbox') {
-                    elem.checked = data[id];
-                } else {
-                    elem.value = data[id];
-                }
-            }
-        });
-        console.log('🔄 AMI数据已强制回填');
-    }
-    
-    let isSyncing = false;
-    
-    async function enhancedSyncProcess() {
-        if (isSyncing) return;
-        isSyncing = true;
-        
-        try {
-            showLoadingMask('数据同步中...');
-            
-            const localData = captureAllFormData();
-            const today = new Date().toISOString().split('T')[0];
-            const cloudData = await downloadFromGitHub();
-            
-            if (!cloudData[today]) {
-                cloudData[today] = {};
-            }
-            Object.assign(cloudData[today], localData);
-            
-            await uploadToGitHub(cloudData);
-            
-            hideLoadingMask();
-            alert('✅ 数据同步成功！');
-        } catch (error) {
-            console.error('❌ 同步失败:', error);
-            hideLoadingMask();
-            alert('❌ 同步失败: ' + error.message);
-        } finally {
-            isSyncing = false;
-        }
-    }
-    
+    // 原子化状态抓取函数
     function captureAllFormData() {
         const formData = {};
         document.querySelectorAll('[id]').forEach(elem => {
-            if (elem.type === 'checkbox') {
+            if (elem.type === 'checkbox' || elem.type === 'radio') {
                 formData[elem.id] = elem.checked;
-            } else {
+            } else if (elem.tagName === 'SELECT') {
+                formData[elem.id] = elem.value;
+            } else if (elem.tagName === 'INPUT' || elem.tagName === 'TEXTAREA') {
                 formData[elem.id] = elem.value;
             }
         });
         return formData;
     }
     
+    // 强制数据回填函数
+    function forceRestoreFormData(data) {
+        Object.keys(data).forEach(id => {
+            const elem = document.getElementById(id);
+            if (elem) {
+                if (elem.type === 'checkbox' || elem.type === 'radio') {
+                    elem.checked = data[id];
+                } else {
+                    elem.value = data[id];
+                }
+                // 触发input事件以更新计算
+                elem.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+        });
+        console.log('🔄 数据已强制回填');
+    }
+    
+    // GitHub同步状态管理
+    let lastKnownSha = localStorage.getItem('github_last_sha') || null;
+    let isSyncing = false;
+    
+    // Base64编码优化（支持中文）
+    function utf8_to_b64(str) {
+        return window.btoa(unescape(encodeURIComponent(str)));
+    }
+    
+    function b64_to_utf8(str) {
+        return decodeURIComponent(escape(window.atob(str)));
+    }
+    
+    // 获取GitHub文件SHA
+    async function getGitHubFileSha() {
+        const token = document.getElementById('SYNC_Token_01')?.value || localStorage.getItem('github_token');
+        const username = document.getElementById('SYNC_Username_01')?.value || localStorage.getItem('github_username');
+        const repo = document.getElementById('SYNC_Repo_01')?.value || localStorage.getItem('github_repo');
+        const branch = document.getElementById('SYNC_Branch_01')?.value || localStorage.getItem('github_branch') || 'main';
+        const path = 'tpi_data.json';
+        
+        if (!token || !username || !repo) {
+            throw new Error('请先配置GitHub同步信息');
+        }
+        
+        const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}?ref=${branch}`;
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        
+        if (!response.ok) {
+            if (response.status === 404) {
+                return null; // 文件不存在
+            }
+            throw new Error(`获取文件信息失败: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data.sha;
+    }
+    
+    // 从GitHub下载数据
+    async function downloadFromGitHub() {
+        const token = document.getElementById('SYNC_Token_01')?.value || localStorage.getItem('github_token');
+        const username = document.getElementById('SYNC_Username_01')?.value || localStorage.getItem('github_username');
+        const repo = document.getElementById('SYNC_Repo_01')?.value || localStorage.getItem('github_repo');
+        const branch = document.getElementById('SYNC_Branch_01')?.value || localStorage.getItem('github_branch') || 'main';
+        const path = 'tpi_data.json';
+        
+        if (!token || !username || !repo) {
+            throw new Error('请先配置GitHub同步信息');
+        }
+        
+        const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}?ref=${branch}`;
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        
+        if (!response.ok) {
+            if (response.status === 404) {
+                return {}; // 文件不存在，返回空对象
+            }
+            throw new Error(`下载数据失败: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        const content = b64_to_utf8(data.content);
+        return JSON.parse(content);
+    }
+    
+    // 上传数据到GitHub
+    async function uploadToGitHub(data, sha) {
+        const token = document.getElementById('SYNC_Token_01')?.value || localStorage.getItem('github_token');
+        const username = document.getElementById('SYNC_Username_01')?.value || localStorage.getItem('github_username');
+        const repo = document.getElementById('SYNC_Repo_01')?.value || localStorage.getItem('github_repo');
+        const branch = document.getElementById('SYNC_Branch_01')?.value || localStorage.getItem('github_branch') || 'main';
+        const path = 'tpi_data.json';
+        
+        const content = utf8_to_b64(JSON.stringify(data, null, 2));
+        
+        const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+        
+        const body = {
+            message: `Update TPI data - ${new Date().toISOString()}`,
+            content: content,
+            branch: branch
+        };
+        
+        if (sha) {
+            body.sha = sha;
+        }
+        
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(body)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`上传失败: ${errorData.message}`);
+        }
+        
+        const result = await response.json();
+        return result.content.sha;
+    }
+    
+    // 增强版同步流程（带SHA冲突检测）
+    async function enhancedSyncProcess() {
+        if (isSyncing) {
+            showNotification('正在同步中，请稍候...', 'warning');
+            return;
+        }
+        
+        isSyncing = true;
+        showLoadingMask('正在校验云端版本...');
+        
+        try {
+            // 保存当前DOM数据到本地
+            const localData = captureAllFormData();
+            const today = new Date().toISOString().split('T')[0];
+            
+            // 获取云端SHA
+            const cloudSha = await getGitHubFileSha();
+            
+            // 检测冲突
+            if (lastKnownSha && cloudSha && lastKnownSha !== cloudSha) {
+                hideLoadingMask();
+                
+                // 冲突处理对话框
+                const conflictChoice = confirm(
+                    '⚠️ 检测到云端版本冲突！\n\n' +
+                    '云端已被其他设备更新。\n' +
+                    '点击【确定】覆盖云端（使用当前本地数据）\n' +
+                    '点击【取消】取消同步（保留云端数据）'
+                );
+                
+                if (!conflictChoice) {
+                    showNotification('已取消同步', 'info');
+                    return;
+                }
+                
+                showLoadingMask('正在覆盖云端数据...');
+            }
+            
+            // 下载云端数据
+            const cloudData = await downloadFromGitHub();
+            
+            // 增量合并逻辑
+            if (!cloudData[today]) {
+                cloudData[today] = {};
+            }
+            Object.assign(cloudData[today], localData);
+            
+            // 上传到云端
+            const newSha = await uploadToGitHub(cloudData, cloudSha);
+            
+            // 更新本地SHA记录
+            lastKnownSha = newSha;
+            localStorage.setItem('github_last_sha', newSha);
+            
+            // 保存到本地存储
+            localStorage.setItem('tpiCloudData', JSON.stringify(cloudData));
+            
+            hideLoadingMask();
+            showNotification('✅ 数据同步成功！', 'success');
+            
+        } catch (error) {
+            console.error('❌ 同步失败:', error);
+            hideLoadingMask();
+            showNotification('❌ 同步失败: ' + error.message, 'error');
+        } finally {
+            isSyncing = false;
+        }
+    }
+    
+    // 增强版导出系统（带日期排序）
+    function enhancedExportSystem(format = 'json') {
+        const cloudData = JSON.parse(localStorage.getItem('tpiCloudData') || '{}');
+        
+        // 日期排序（降序）
+        const sortedDates = Object.keys(cloudData).sort((a, b) => new Date(b) - new Date(a));
+        
+        const option = confirm(
+            '选择导出范围：\n\n' +
+            '【确定】= 导出今日数据\n' +
+            '【取消】= 导出历史全量'
+        );
+        
+        const today = new Date().toISOString().split('T')[0];
+        let exportData;
+        let filename;
+        
+        if (option) {
+            exportData = { [today]: cloudData[today] || {} };
+            filename = `TPI_${today}`;
+        } else {
+            // 按排序后的日期重组数据
+            exportData = {};
+            sortedDates.forEach(date => {
+                exportData[date] = cloudData[date];
+            });
+            filename = `TPI_FullHistory`;
+        }
+        
+        if (format === 'json') {
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            downloadBlob(blob, `${filename}.json`);
+        } else if (format === 'markdown') {
+            const mdContent = convertToMarkdown(exportData);
+            const blob = new Blob([mdContent], { type: 'text/markdown' });
+            downloadBlob(blob, `${filename}.md`);
+        } else if (format === 'txt') {
+            const txtContent = convertToText(exportData);
+            const blob = new Blob([txtContent], { type: 'text/plain' });
+            downloadBlob(blob, `${filename}.txt`);
+        }
+        
+        showNotification(`✅ 已导出 ${format.toUpperCase()} 格式`, 'success');
+    }
+    
+    // 转换为Markdown格式
+    function convertToMarkdown(data) {
+        let md = '# TPI 全维效能管理系统\n\n';
+        
+        Object.keys(data).sort((a, b) => new Date(b) - new Date(a)).forEach(date => {
+            md += `## ${date}\n\n`;
+            const dayData = data[date];
+            
+            Object.keys(dayData).forEach(key => {
+                const value = dayData[key];
+                if (typeof value === 'boolean') {
+                    md += `- [${value ? 'x' : ' '}] ${key}\n`;
+                } else if (value) {
+                    md += `- **${key}**: ${value}\n`;
+                }
+            });
+            
+            md += '\n---\n\n';
+        });
+        
+        return md;
+    }
+    
+    // 转换为文本格式
+    function convertToText(data) {
+        let txt = 'TPI 全维效能管理系统\n';
+        txt += '='.repeat(50) + '\n\n';
+        
+        Object.keys(data).sort((a, b) => new Date(b) - new Date(a)).forEach(date => {
+            txt += `【${date}】\n`;
+            const dayData = data[date];
+            
+            Object.keys(dayData).forEach(key => {
+                const value = dayData[key];
+                if (typeof value === 'boolean') {
+                    txt += `${value ? '✓' : '✗'} ${key}\n`;
+                } else if (value) {
+                    txt += `${key}: ${value}\n`;
+                }
+            });
+            
+            txt += '\n';
+        });
+        
+        return txt;
+    }
+    
+    // 下载Blob文件
+    function downloadBlob(blob, filename) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+    
+    // 显示加载遮罩
+    function showLoadingMask(message = '数据加载中...') {
+        let mask = document.getElementById('loadingMask');
+        if (!mask) {
+            mask = document.createElement('div');
+            mask.id = 'loadingMask';
+            mask.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.7); z-index: 99999; display: flex;
+                align-items: center; justify-content: center; color: white; 
+                font-size: 24px; font-family: sans-serif;
+            `;
+            document.body.appendChild(mask);
+        }
+        mask.innerHTML = `<div style="text-align:center;">
+            <div style="font-size:48px;margin-bottom:20px;">⏳</div>
+            <div>${message}</div>
+        </div>`;
+        mask.style.display = 'flex';
+        document.body.style.pointerEvents = 'none';
+    }
+    
+    // 隐藏加载遮罩
+    function hideLoadingMask() {
+        const mask = document.getElementById('loadingMask');
+        if (mask) {
+            mask.style.display = 'none';
+        }
+        document.body.style.pointerEvents = 'auto';
+    }
+    
+    // 显示通知
+    function showNotification(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px;
+            padding: 15px 25px; border-radius: 8px;
+            background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6'};
+            color: white; font-size: 16px; z-index: 100000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideInRight 0.3s ease-out;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.animation = 'slideOutRight 0.3s ease-out';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // 增强版实时计算
+    function enhancedRealtimeCalculator() {
+        // 确保所有数值输入都有防御性计算
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                const value = parseFloat(this.value) || 0;
+                const min = parseFloat(this.min) || 0;
+                const max = parseFloat(this.max) || Infinity;
+                
+                if (value < min) this.value = min;
+                if (value > max) this.value = max;
+            });
+        });
+        
+        // 触发原有计算系统
+        if (window.RealtimeCalculator) {
+            window.RealtimeCalculator.recalculate();
+        }
+    }
+    
+    // 弹窗安全机制
+    function setupModalSafety() {
+        // 为所有modal添加关闭事件
+        document.querySelectorAll('[class*="modal"]').forEach(modal => {
+            const overlay = modal.closest('.modal-overlay') || modal;
+            
+            // 点击遮罩关闭
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.style.display = 'none';
+                }
+            });
+            
+            // ESC键关闭
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.style.display !== 'none') {
+                    overlay.style.display = 'none';
+                }
+            });
+            
+            // 查找关闭按钮
+            const closeBtn = modal.querySelector('[class*="close"], [onclick*="close"], [aria-label*="close"]');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    overlay.style.display = 'none';
+                });
+            }
+        });
+    }
+    
+    // 每日自动重置（优化版）
     function dailyAutoReset() {
         const today = new Date().toISOString().split('T')[0];
         const lastDate = localStorage.getItem('lastVisitDate');
         
         if (lastDate !== today) {
-            document.querySelectorAll('[id]').forEach(elem => {
-                if (elem.tagName === 'INPUT' && elem.type !== 'button') {
-                    if (elem.type === 'checkbox') elem.checked = false;
-                    else elem.value = '';
-                } else if (elem.tagName === 'TEXTAREA') {
-                    elem.value = '';
+            // 只重置输入框，保留设置
+            document.querySelectorAll('[data-module]').forEach(elem => {
+                const module = elem.dataset.module;
+                if (module !== 'SETT' && module !== 'SYNC') {
+                    if (elem.tagName === 'INPUT' && elem.type !== 'button') {
+                        if (elem.type === 'checkbox' || elem.type === 'radio') {
+                            elem.checked = false;
+                        } else {
+                            elem.value = '';
+                        }
+                    } else if (elem.tagName === 'TEXTAREA' && module !== 'SETT') {
+                        elem.value = '';
+                    }
                 }
             });
             
@@ -279,78 +669,149 @@
         }
     }
     
-    function enhancedExportSystem() {
-        const today = new Date().toISOString().split('T')[0];
-        const cloudData = JSON.parse(localStorage.getItem('tpiCloudData') || '{}');
-        const option = confirm('选择导出范围：\n确定=导出今日数据\n取消=导出历史全量');
+    // 横屏提示优化
+    function setupOrientationWarning() {
+        const dontShowAgain = localStorage.getItem('hideOrientationWarning');
+        if (dontShowAgain === 'true') return;
         
-        let exportData;
-        if (option) {
-            exportData = { [today]: cloudData[today] || {} };
-        } else {
-            exportData = cloudData;
+        // 检查是否横屏
+        function checkOrientation() {
+            if (window.innerWidth > window.innerHeight && window.innerWidth > 768) {
+                showOrientationWarning();
+            }
         }
         
-        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = option ? `TPI_${today}.json` : `TPI_FullHistory.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-    }
-    
-    function showLoadingMask(message = '数据回填中...') {
-        const mask = document.createElement('div');
-        mask.id = 'loadingMask';
-        mask.style.cssText = `
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); z-index: 9999; display: flex;
-            align-items: center; justify-content: center; color: white; font-size: 24px;
-        `;
-        mask.innerHTML = `<div>${message}</div>`;
-        document.body.appendChild(mask);
-        document.body.style.pointerEvents = 'none';
-    }
-    
-    function hideLoadingMask() {
-        const mask = document.getElementById('loadingMask');
-        if (mask) mask.remove();
-        document.body.style.pointerEvents = 'auto';
-    }
-    
-    function adaptRealtimeCalculator() {
-        if (window.RealtimeCalculator) {
-            window.RealtimeCalculator.elementIds = 
-                Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+        function showOrientationWarning() {
+            let warning = document.getElementById('orientation-warning');
+            if (!warning) {
+                warning = document.createElement('div');
+                warning.id = 'orientation-warning';
+                warning.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                    background: rgba(0,0,0,0.9); z-index: 99998;
+                    display: flex; flex-direction: column;
+                    align-items: center; justify-content: center;
+                    color: white; font-size: 20px; text-align: center;
+                `;
+                warning.innerHTML = `
+                    <div style="font-size: 64px; margin-bottom: 20px;">📱</div>
+                    <div style="margin-bottom: 30px;">建议使用竖屏浏览以获得最佳体验</div>
+                    <button id="orientation-ok" style="
+                        padding: 12px 30px; font-size: 18px;
+                        background: #2563eb; color: white;
+                        border: none; border-radius: 8px; cursor: pointer;
+                        margin-bottom: 20px;
+                    ">知道了</button>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="orientation-dont-show">
+                        <span>不再提示</span>
+                    </label>
+                `;
+                document.body.appendChild(warning);
+                
+                // 绑定事件
+                document.getElementById('orientation-ok').addEventListener('click', () => {
+                    warning.remove();
+                });
+                
+                document.getElementById('orientation-dont-show').addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        localStorage.setItem('hideOrientationWarning', 'true');
+                    }
+                });
+                
+                // 3秒后自动消失
+                setTimeout(() => {
+                    if (warning.parentNode) {
+                        warning.remove();
+                    }
+                }, 3000);
+            }
         }
+        
+        // 初始检查
+        checkOrientation();
+        
+        // 监听旋转
+        window.addEventListener('resize', checkOrientation);
     }
     
-    document.addEventListener('DOMContentLoaded', function() {
+    // 初始化函数
+    function init() {
+        console.log('🚀 TPI系统增强补丁v31.0开始加载...');
+        
         assignUniqueIds();
-        captureAMIData();
         dailyAutoReset();
-        adaptRealtimeCalculator();
+        enhancedRealtimeCalculator();
+        setupModalSafety();
+        setupOrientationWarning();
         
-        const syncBtn = document.querySelector('[onclick*="sync"]') || document.getElementById('sync-btn');
-        if (syncBtn) syncBtn.onclick = enhancedSyncProcess;
+        // 绑定同步按钮
+        setTimeout(() => {
+            const syncBtn = document.querySelector('[onclick*="sync"]') || 
+                           document.querySelector('[id*="sync"] button') ||
+                           document.querySelector('button[aria-label*="同步"]');
+            if (syncBtn) {
+                const oldOnClick = syncBtn.onclick;
+                syncBtn.onclick = enhancedSyncProcess;
+                console.log('✅ 同步按钮已绑定增强版同步流程');
+            }
+            
+            // 绑定导出按钮
+            const exportBtn = document.querySelector('[onclick*="export"]') ||
+                            document.querySelector('[id*="export"] button');
+            if (exportBtn) {
+                exportBtn.onclick = () => enhancedExportSystem('json');
+                console.log('✅ 导出按钮已绑定增强版导出系统');
+            }
+            
+            // 绑定Markdown导出按钮
+            const mdExportBtn = document.querySelector('[onclick*="markdown"]') ||
+                               document.querySelector('button[aria-label*="Markdown"]');
+            if (mdExportBtn) {
+                mdExportBtn.onclick = () => enhancedExportSystem('markdown');
+                console.log('✅ Markdown导出按钮已绑定');
+            }
+            
+        }, 100);
         
-        const exportBtn = document.querySelector('[onclick*="export"]') || document.getElementById('export-btn');
-        if (exportBtn) exportBtn.onclick = enhancedExportSystem;
+        // 监听所有输入变化，实时更新汇总区
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('input, select, textarea')) {
+                // 更新汇总区
+                const summaryTextarea = document.querySelector('textarea[aria-label*="汇总"]') ||
+                                       document.querySelector('[id*="summary"] textarea');
+                if (summaryTextarea) {
+                    const currentData = captureAllFormData();
+                    summaryTextarea.value = JSON.stringify(currentData, null, 2);
+                }
+                
+                // 触发计算
+                enhancedRealtimeCalculator();
+            }
+        }, true);
         
-        console.log('🎉 TPI系统加固补丁加载完成！');
-    });
-    
-    async function downloadFromGitHub() {
-        return JSON.parse(localStorage.getItem('tpiCloudData') || '{}');
+        console.log('🎉 TPI系统增强补丁v31.0加载完成！');
     }
     
-    async function uploadToGitHub(data) {
-        localStorage.setItem('tpiCloudData', JSON.stringify(data));
+    // 页面加载完成后初始化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
+    
+    // 暴露全局函数供外部调用
+    window.TPI_Enhanced = {
+        sync: enhancedSyncProcess,
+        export: enhancedExportSystem,
+        captureData: captureAllFormData,
+        restoreData: forceRestoreFormData
+    };
+    
 })();
 </script>
-<!-- TPI系统加固补丁结束 -->
+<!-- TPI系统增强补丁结束 -->
 </script>
 <title>
    TPI全维效能管理系统 第30版 GitHub云端同步
@@ -366,7 +827,7 @@
         };
         
         // 系统版本号 (第30版 GitHub同步版)
-        window.TPI_VERSION = '第30版 v30.0.1 GitHub同步版';
+        window.TPI_VERSION = '第31版 v31.0.0 GitHub同步版';
         window.TPI_DATA_VERSION = '5.0';
         window.TPI_BUILD_DATE = getCurrentDate(); // 动态获取当前日期
         
@@ -1092,7 +1553,211 @@ window.exportReportComplete = function(format) {
                 </head>
                 <body>
                     ${reportContent.innerHTML}
-                </body>
+                
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body>
                 </html>
             `);
             printWindow.document.close();
@@ -2051,6 +2716,210 @@ window.exportDataComplete = function(format) {
         <tr><td>运动时长</td><td>${data.exerciseMinutes || 0} 分钟</td></tr>
         <tr><td>睡眠时长</td><td>${data.sleepHours || 0} 小时</td></tr>
     </table>
+
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
 </body>
 </html>`;
                 fileName += '.html';
@@ -2235,6 +3104,210 @@ window.exportDataComplete = function(format) {
             }, 500);
         });
     <\/script>
+
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
 </body>
 <\/html>`;
                 fileName += '.html';
@@ -17621,7 +18694,7 @@ ${reflection}
     .modal-body { padding: 20px; }
     .modal-footer { padding: 15px 20px; border-top: 1px solid #eee; display: flex; justify-content: flex-end; gap: 10px; }
     .modal-button { padding: 8px 16px; border-radius: 6px; cursor: pointer; border: none; font-weight: 600; }
-     .quick-nav-group{position:fixed;right:20px;bottom:100px;z-index:9999;display:flex;flex-direction:column;gap:10px;}.quick-btn{width:45px;height:45px;background-color:rgba(37, 99, 235, 0.9);color:white;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;}.quick-btn:hover{background-color:#1e40af;transform:scale(1.1);}@media (max-width:768px){.quick-nav-group{right:15px;bottom:90px;}.quick-btn{width:40px;height:40px;font-size:18px;opacity:0.8;}}.loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease;}.loading-overlay.fade-out{opacity:0;}.loading-spinner{width:60px;height:60px;border:4px solid rgba(255, 255, 255, 0.3);border-top-color:white;border-radius:50%;animation:spin 1s linear infinite;}@keyframes spin{to{transform:rotate(360deg);}}.loading-text{margin-top:var(--spacing-6);color:white;font-size:var(--font-size-xl);font-weight:600;}.loading-version{margin-top:var(--spacing-2);color:rgba(255, 255, 255, 0.8);font-size:var(--font-size-sm);}@media (max-width:768px){table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}button, .btn, .quick-nav-btn-v19, input[type="button"], input[type="submit"]{min-height:44px;min-width:44px;padding:10px 16px;}.input-group{flex-direction:column;gap:var(--spacing-2);}.card{padding:var(--spacing-3);margin-bottom:var(--spacing-3);}.quick-nav-v19{flex-wrap:wrap;gap:8px;}.quick-nav-btn-v19{font-size:12px;padding:8px 12px;}body{font-size:14px;}h1{font-size:24px;}h2{font-size:20px;}h3{font-size:18px;}input[type="number"], input[type="text"], input[type="time"], input[type="date"], input[type="date"], select, textarea{font-size:16px;min-height:44px;}.section{padding:var(--spacing-3);}.row, .flex-row{flex-direction:column;}.modal-content{width:95%;max-width:95%;margin:10px auto;}.desktop-only{display:none !important;}}@media (max-width:480px){.card{padding:var(--spacing-2);margin-bottom:var(--spacing-2);}.quick-nav-btn-v19{font-size:11px;padding:6px 10px;}table{font-size:12px;}th, td{padding:6px;}}@media (min-width:769px) and (max-width:1024px){.container{max-width:95%;}.grid-3{grid-template-columns:repeat(2, 1fr);}}@media (hover:none) and (pointer:coarse){a, button, input, select, textarea{min-height:44px;min-width:44px;}button:hover, .btn:hover{transform:none;}}@media (max-width:768px) and (orientation:landscape){.quick-nav-container-v19{max-height:50vh;overflow-y:auto;}}
+     .quick-nav-group{position:fixed;right:20px;bottom:100px;z-index:9999;display:flex;flex-direction:column;gap:10px;}.quick-btn{width:45px;height:45px;background-color:rgba(37, 99, 235, 0.9);color:white;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;}.quick-btn:hover{background-color:#1e40af;transform:scale(1.1);}@media (max-width:768px){.quick-nav-group{right:15px;bottom:90px;}.quick-btn{width:40px;height:40px;font-size:18px;opacity:0.8;}}.loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease;}.loading-overlay.fade-out{opacity:0;}.loading-spinner{width:60px;height:60px;border:4px solid rgba(255, 255, 255, 0.3);border-top-color:white;border-radius:50%;animation:spin 1s linear infinite;}@keyframes spin{to{transform:rotate(360deg);}}.loading-text{margin-top:var(--spacing-6);color:white;font-size:var(--font-size-xl);font-weight:600;}.loading-version{margin-top:var(--spacing-2);color:rgba(255, 255, 255, 0.8);font-size:var(--font-size-sm);}@media (max-width:768px){table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}button, .btn, .quick-nav-btn-v19, input[type="button"], input[type="submit"]{min-height:44px;min-width:44px;padding:10px 16px;}.input-group{flex-direction:column;gap:var(--spacing-2);}.card{padding:var(--spacing-3);margin-bottom:var(--spacing-3);}.quick-nav-v19{flex-wrap:wrap;gap:8px;}.quick-nav-btn-v19{font-size:12px;padding:8px 12px;}body{font-size:14px;}h1{font-size:24px;}h2{font-size:20px;}h3{font-size:18px;}input[type="number"], input[type="text"], input[type="time"], input[type="date"], select, textarea{font-size:16px;min-height:44px;}.section{padding:var(--spacing-3);}.row, .flex-row{flex-direction:column;}.modal-content{width:95%;max-width:95%;margin:10px auto;}.desktop-only{display:none !important;}}@media (max-width:480px){.card{padding:var(--spacing-2);margin-bottom:var(--spacing-2);}.quick-nav-btn-v19{font-size:11px;padding:6px 10px;}table{font-size:12px;}th, td{padding:6px;}}@media (min-width:769px) and (max-width:1024px){.container{max-width:95%;}.grid-3{grid-template-columns:repeat(2, 1fr);}}@media (hover:none) and (pointer:coarse){a, button, input, select, textarea{min-height:44px;min-width:44px;}button:hover, .btn:hover{transform:none;}}@media (max-width:768px) and (orientation:landscape){.quick-nav-container-v19{max-height:50vh;overflow-y:auto;}}
   </style>
 <div class="quick-nav-group">
 <button class="quick-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="回到顶部">
@@ -20688,7 +21761,211 @@ window.addEventListener('resize', function() {
             </div>
 
                             ${preview.innerHTML}
-                        </body>
+                        
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body>
                         </html>
                     `;
 
@@ -20787,7 +22064,211 @@ window.addEventListener('resize', function() {
                                 <button class="btn" onclick="window.print()">🖨️ 打印</button>
                                 <button class="btn" onclick="window.close()">关闭</button>
                             </div>
-                        </body>
+                        
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body>
                         </html>
                     `);
                     previewWindow.document.close();
@@ -21435,7 +22916,211 @@ window.addEventListener('resize', function() {
             </div>
 
                         ${reportContent.innerHTML}
-                    </body>
+                    
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body>
                     </html>
                 `);
                 printWindow.document.close();
@@ -21778,7 +23463,211 @@ window.addEventListener('resize', function() {
                 for (let key in allData) {
                     html += '<tr><td>' + key + '</td><td><pre>' + allData[key] + '</pre></td></tr>';
                 }
-                html += '</table></body></html>';
+                html += '</table>
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body></html>';
                 dataStr = html;
                 filename = 'TPI_数据导出_' + new Date().toISOString().split('T')[0] + '.html';
                 mimeType = 'text/html';
@@ -23834,7 +25723,211 @@ console.log('✅ 全局函数已定义: copyPreviousDayDataComplete, archiveOldD
                             const date = key.replace('tpi_data_', '');
                             html += `<tr><td>${date}</td><td><pre>${allData[key]}</pre></td></tr>`;
                         }
-                        html += '</table></body></html>';
+                        html += '</table>
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body></html>';
                         const blob = new Blob([html], { type: 'text/html' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -26643,51 +28736,18 @@ if (typeof window.TPI !== 'undefined') {
     // ═══════════════════════════════════════════════════════════════════
     function fillUIWithData(data) {
         console.log('[GitHub] 开始填充UI数据');
-        console.log('[GitHub] 数据字段数:', Object.keys(data).length);
         
-        let filledCount = 0;
-        
-        // 填充所有input、textarea和select
+        // 填充所有input和textarea
         for (const [key, value] of Object.entries(data)) {
             const element = document.getElementById(key);
             if (element) {
                 if (element.type === 'checkbox') {
-                    element.checked = Boolean(value);
-                    filledCount++;
-                } else if (element.type === 'radio') {
-                    // Radio按钮需要特殊处理
-                    if (element.value === value) {
-                        element.checked = true;
-                        filledCount++;
-                    }
-                } else if (element.tagName === 'SELECT') {
-                    // 下拉框
-                    element.value = value;
-                    filledCount++;
-                } else if (element.tagName === 'TEXTAREA') {
-                    // Textarea
-                    element.value = value || '';
-                    filledCount++;
+                    element.checked = value;
                 } else {
-                    // 普通input (text, number, time, date等)
-                    element.value = value || '';
-                    filledCount++;
-                }
-            } else {
-                // 如果没有找到对应ID的元素,尝试通过name查找radio按钮
-                const radioElements = document.querySelectorAll(`input[type="radio"][name="${key}"]`);
-                if (radioElements.length > 0) {
-                    radioElements.forEach(radio => {
-                        if (radio.value === value) {
-                            radio.checked = true;
-                            filledCount++;
-                        }
-                    });
+                    element.value = value;
                 }
             }
         }
-        
-        console.log(`[GitHub] 已填充${filledCount}个字段`);
         
         // 重新计算分数
         if (typeof RealtimeCalculator !== 'undefined' && typeof RealtimeCalculator.recalculate === 'function') {
@@ -26704,7 +28764,7 @@ if (typeof window.TPI !== 'undefined') {
         console.log('[GitHub] 开始重置UI为空白');
         
         // 清空所有input
-        document.querySelectorAll('input[type="number"], input[type="text"], input[type="time"], input[type="date"]').forEach(input => {
+        document.querySelectorAll('input[type="number"], input[type="text"], input[type="time"]').forEach(input => {
             if (input.type === 'number') {
                 input.value = '0';
             } else {
@@ -26759,8 +28819,8 @@ if (typeof window.TPI !== 'undefined') {
             // 收集所有input数据
             const currentData = {};
             
-            // 收集所有input[type="number"], input[type="text"], input[type="time"], input[type="date"]
-            document.querySelectorAll('input[type="number"], input[type="text"], input[type="time"], input[type="date"]').forEach(input => {
+            // 收集所有input[type="number"], input[type="text"], input[type="time"]
+            document.querySelectorAll('input[type="number"], input[type="text"], input[type="time"]').forEach(input => {
                 if (input.id) {
                     currentData[input.id] = input.value;
                 }
@@ -26777,22 +28837,6 @@ if (typeof window.TPI !== 'undefined') {
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 if (checkbox.id) {
                     currentData[checkbox.id] = checkbox.checked;
-                }
-            });
-            
-            
-            // 收集所有radio按钮 - 按name分组,只保存选中的值
-            const radioGroups = new Set();
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                if (radio.name) {
-                    radioGroups.add(radio.name);
-                }
-            });
-            
-            radioGroups.forEach(groupName => {
-                const checkedRadio = document.querySelector(`input[type="radio"][name="${groupName}"]:checked`);
-                if (checkedRadio) {
-                    currentData[groupName] = checkedRadio.value;
                 }
             });
             
@@ -27687,6 +29731,414 @@ window.addEventListener('unhandledrejection', function(event) {
 console.log('✅ 全局错误监控已启动');
 console.log('');
 
+
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
 </body>
 </html>
-</script></body></html>
+</script>
+// GitHub模块专用通知适配函数 - 修复showNotification未定义问题
+function showNotification(type, title, message) {
+    try {
+        // 优先使用系统已有的showNotification函数
+        if (typeof window.showNotification === 'function' && window.showNotification.length === 2) {
+            // 系统函数格式: showNotification(message, type)
+            window.showNotification(`${title}: ${message}`, type);
+            return;
+        }
+        
+        // 否则使用自定义Toast实现
+        createNotificationToast(type, title, message);
+    } catch (error) {
+        // 终极兜底：使用console输出
+        console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
+    }
+}
+// 自定义Toast通知实现
+function createNotificationToast(type, title, message) {
+    // 创建容器
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            max-width: 400px;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    // 创建Toast元素
+    const toast = document.createElement('div');
+    const icon = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+    }[type] || 'ℹ️';
+    
+    const bgColor = {
+        success: '#dcfce7',
+        error: '#fef2f2',
+        info: '#dbeafe',
+        warning: '#fef3c7'
+    }[type] || '#f3f4f6';
+    
+    const borderColor = {
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
+    }[type] || '#6b7280';
+    
+    toast.style.cssText = `
+        background: ${bgColor};
+        border-left: 4px solid ${borderColor};
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 16px 20px;
+        margin-bottom: 10px;
+        animation: slideInRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    toast.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="font-size: 20px; flex-shrink: 0;">${icon}</div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; color: #111827; margin-bottom: 4px;">${title}</div>
+                <div style="color: #6b7280; font-size: 14px; line-height: 1.4;">${message}</div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: none;
+                border: none;
+                font-size: 18px;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                margin: -4px -8px 0 0;
+            ">&times;</button>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // 添加动画样式
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // 自动移除
+    const duration = type === 'success' ? 3000 : type === 'error' ? 5000 : 4000;
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, duration);
+}
+// 为GitHub模块函数添加异常捕获
+function wrapGitHubFunctions() {
+    // 保存原始函数
+    const originalSaveGitHubConfig = window.saveGitHubConfig;
+    const originalTestGitHubConnection = window.testGitHubConnection;
+    const originalSyncToGitHub = window.syncToGitHub;
+    const originalLoadFromGitHub = window.loadFromGitHub;
+    
+    // 包装函数，添加异常捕获
+    window.saveGitHubConfig = function() {
+        try {
+            return originalSaveGitHubConfig.apply(this, arguments);
+        } catch (error) {
+            console.error('saveGitHubConfig失败:', error);
+            // 确保UI显示失败状态
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 保存配置失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            // 使用兜底通知
+            console.log('[ERROR] 保存配置失败:', error.message);
+        }
+    };
+    
+    window.testGitHubConnection = async function() {
+        try {
+            return await originalTestGitHubConnection.apply(this, arguments);
+        } catch (error) {
+            console.error('testGitHubConnection失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 测试连接失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 测试连接失败:', error.message);
+        }
+    };
+    
+    window.syncToGitHub = async function() {
+        try {
+            return await originalSyncToGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('syncToGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 同步到云端失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 同步到云端失败:', error.message);
+        }
+    };
+    
+    window.loadFromGitHub = async function() {
+        try {
+            return await originalLoadFromGitHub.apply(this, arguments);
+        } catch (error) {
+            console.error('loadFromGitHub失败:', error);
+            const statusDiv = document.getElementById('github-sync-status');
+            if (statusDiv) {
+                statusDiv.textContent = '❌ 从云端下载失败';
+                statusDiv.className = 'status error';
+                statusDiv.style.display = 'block';
+            }
+            console.log('[ERROR] 从云端下载失败:', error.message);
+        }
+    };
+}
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    wrapGitHubFunctions();
+});
+
+</body></html>
