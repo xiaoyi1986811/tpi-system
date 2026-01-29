@@ -103,6 +103,7 @@
     "injection-mode": "merge"
   },
   "2026-01-29": {
+    "date-input": "2026-01-29",
     "github-username": "xiaoyi1986811",
     "github-repo": "tpi-system",
     "github-branch": "main",
@@ -115,6 +116,7 @@
     "sys-score": "0.0",
     "bonus-score": "0.0",
     "radar-title": "",
+    "radar-date": "",
     "radar-time-start": "",
     "radar-time-end": "",
     "radar-location": "",
@@ -153,6 +155,9 @@
     "victory-1": "",
     "victory-2": "",
     "victory-3": "",
+    "history-date": "",
+    "export-start-date": "2026-01-29",
+    "export-end-date": "2026-01-29",
     "misc-edit-content": "",
     "radar-remarks": "",
     "json-import-area": "",
