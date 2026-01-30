@@ -208,7 +208,7 @@
   "2026-01-30": {
     "date-input": "2026-01-30",
     "github-username": "xiaoyi1986811",
-    "github-repo": "tpi-system",
+    "github-repo": " tpi-system",
     "github-branch": "main",
     "tpi-total": 0,
     "ma7-score": 0,
@@ -312,6 +312,6 @@
     "hsm-water-afternoon-status": "",
     "hsm-water-evening-status": "",
     "injection-mode": "merge",
-    "_lastModified": "2026-01-30T17:40:15.571Z"
+    "_lastModified": "2026-01-30T18:04:08.890Z"
   }
 }
