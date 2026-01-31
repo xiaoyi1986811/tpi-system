@@ -109,7 +109,7 @@
         "tag": "input",
         "type": "text",
         "selector": "#github-repo",
-        "value": ""
+        "value": "tpi-system"
       },
       "#github-branch": {
         "tag": "input",
@@ -2336,6 +2336,6 @@
       }
     },
     "_deviceId": "dev_48a4b5e4125f9a6d",
-    "_lastModified": "2026-01-31T23:10:13.191Z"
+    "_lastModified": "2026-01-31T23:10:57.366Z"
   }
 }
