@@ -103,13 +103,13 @@
         "tag": "input",
         "type": "text",
         "selector": "#github-username",
-        "value": ""
+        "value": "xiaoyi1986811"
       },
       "#github-repo": {
         "tag": "input",
         "type": "text",
         "selector": "#github-repo",
-        "value": ""
+        "value": "tpi-system"
       },
       "#github-branch": {
         "tag": "input",
@@ -2003,7 +2003,7 @@
         "tag": "textarea",
         "type": "",
         "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2) > textarea:nth-of-type(1)",
-        "value": "中国人民"
+        "value": ""
       },
       "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(3) > select:nth-of-type(1)": {
         "tag": "select",
@@ -2336,6 +2336,6 @@
       }
     },
     "_deviceId": "dev_48a4b5e4125f9a6d",
-    "_lastModified": "2026-01-31T23:23:01.292Z"
+    "_lastModified": "2026-01-31T23:29:14.281Z"
   }
 }
