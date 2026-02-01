@@ -2456,18 +2456,6 @@
         "selector": "#github-branch",
         "value": "main"
       },
-      "#misc-edit-id": {
-        "tag": "input",
-        "type": "hidden",
-        "selector": "#misc-edit-id",
-        "value": ""
-      },
-      "#misc-edit-content": {
-        "tag": "textarea",
-        "type": "",
-        "selector": "#misc-edit-content",
-        "value": ""
-      },
       "#tpi-total": {
         "tag": "input",
         "type": "number",
@@ -4583,6 +4571,24 @@
         "type": "file",
         "selector": "#import-file",
         "value": ""
+      },
+      "#tpi-range-lastn": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#tpi-range-lastn",
+        "value": ""
+      },
+      "#tpi-range-start": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#tpi-range-start",
+        "value": ""
+      },
+      "#tpi-range-end": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#tpi-range-end",
+        "value": ""
       }
     },
     "_viewState": {
@@ -4598,17 +4604,8 @@
       "#sync-status-container": {
         "text": "同步状态：\n        待同步（有未上传更改）"
       },
-      "#sync-status-text": {
-        "text": "待同步（有未上传更改）"
-      },
       "#misc-notes-section": {
         "text": "📝\n        \n        \n         杂事记录 Miscellaneous Notes (MISC)\n        \n       \n      \n      \n       \n        \n         \n          📝 功能说明\n         \n         ：记录日常琐事、临时想法、待办提醒等零散信息。数据按日期独立存储，自动保存到本地，支持多格式导出。\n        \n       \n       \n       \n        \n        \n        \n        \n       \n       \n       \n        \n        \n         \n          \n           ➕\n          \n          \n           新增记录\n          \n         \n         \n          \n           🗑️\n          \n          \n           批量删除\n          \n         \n         \n          \n           ✓ 确认删除\n          \n          \n           ✕ 取消\n          \n         \n        \n        \n        \n                \n                    📝\n                    暂无记录，点击 ➕ 新增第一条记录\n                \n            \n        \n        \n         \n          \n           \n            编辑记录\n           \n          \n          \n           \n           \n          \n          \n           \n            取消\n           \n           \n            💾 保存\n           \n          \n         \n        \n       \n       \n        \n         📊 字符数：\n         \n          0\n         \n        \n        \n         💡 自动保存 | 按日期存储"
-      },
-      "#misc-notes-list": {
-        "text": "📝\n                    暂无记录，点击 ➕ 新增第一条记录"
-      },
-      "#misc-modal-title": {
-        "text": "编辑记录"
       },
       "#losing-days-display": {
         "text": "0"
@@ -4672,9 +4669,20 @@
       },
       "#badgesContainer": {
         "text": "🏔️\n                        峰值挑战\n                        峰值突破\n                        TPI单日≥156分\n                        当前最高: 0.0分 / 目标: 156分\n                    \n                        🗿\n                        纪律养成\n                        稳如磐石\n                        连续7天TPI≥95分\n                        当前连续: 0天 / 目标: 7天\n                    \n                        🎓\n                        学术成就\n                        学术先锋\n                        AMI单日≥50分\n                        当前最高AMI: 0.0分 / 目标: 50分\n                    \n                        💪\n                        全面发展\n                        铁人三项\n                        AMI、FLI、SYS均≥30分\n                        AMI: 0.0 | FLI: 0.0 | 各需≥30\n                    \n                        👑\n                        长期坚持\n                        月度传奇\n                        30天内平均TPI≥120分\n                        2天平均: 0.0分 / 目标: 120分\n                    \n                        🌅\n                        时间管理\n                        早起鸟\n                        连续7天晨间<08:30\n                        当前连续: 0天 / 目标: 7天\n                    \n                        🌙\n                        作息规律\n                        夜猫子终结者\n                        连续7天睡眠<00:00\n                        当前连续: 0天 / 目标: 7天\n                    \n                        ⭐\n                        卓越表现\n                        完美周\n                        7天TPI全部≥120分\n                        0/2天达标 / 需要: 7/7天\n                    \n                        📚\n                        学术积累\n                        学霸养成\n                        累计阅读≥100页\n                        累计阅读: 0页 / 目标: 100页\n                    \n                        ✍️\n                        产出成就\n                        写作大师\n                        累计写作≥10000字\n                        累计写作: 0字 / 目标: 10000字\n                    \n                        🔥\n                        毅力挑战\n                        坚韧不拔\n                        连续21天TPI≥120分\n                        当前连续: 0天 / 目标: 21天\n                    \n                        ⚖️\n                        整体调和\n                        身心平衡\n                        BCM≥15 且 HSM≥15 单日达成\n                        当前BCM: 0.0 HSM: 0.0 / 各需≥15"
+      },
+      "#tpi-overview-summary": {
+        "text": "天数：6\n范围：2026-01-27 → 2026-02-01\n设备：1 台\n缺失天：0"
       }
     },
     "_deviceId": "dev_48a4b5e4125f9a6d",
-    "_lastModified": "2026-02-01T00:37:38.391Z"
+    "_lastModified": "2026-02-01T07:16:29.382Z",
+    "_recordDate": "2026-02-01",
+    "_eventLocalTime": "2026/2/1 15:16:27",
+    "_uploadTime": "2026-02-01T07:16:27.530Z",
+    "_rulesVersion": "第21版 v21.0.7 (草稿7-已修复函数未定义问题)",
+    "_derived": {
+      "rating": "poor",
+      "total": "0.0"
+    }
   }
 }
