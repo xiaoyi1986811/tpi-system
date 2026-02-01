@@ -117,6 +117,18 @@
         "selector": "#github-branch",
         "value": "main"
       },
+      "#misc-edit-id": {
+        "tag": "input",
+        "type": "hidden",
+        "selector": "#misc-edit-id",
+        "value": ""
+      },
+      "#misc-edit-content": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#misc-edit-content",
+        "value": ""
+      },
       "#tpi-total": {
         "tag": "input",
         "type": "number",
@@ -756,7 +768,7 @@
         "tag": "textarea",
         "type": "",
         "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > textarea:nth-of-type(1)",
-        "value": "我的需求：1、我当天在这个网页所输入、勾选的全部信内部和网页因为各种规则、制度而产生的内容都可以实时上传到云端；2、当我关闭该网页，重新打开，并且输入账号、密码的前提下，点击从云端下载历史，那么我此前所输入的当天的内容或者网页自身因为各种规则、制度而产生的内容能够真的实现下载，这样的话，我就可以在不同终端进行输入；、网页能够记住所有我填写、勾选的内容和网页自身因为规则、制度而产生的所有内容，从而进行包括但是不限于比较、分析在内的工作,比如每天中午、晚上回到宿舍的时间、早上入馆、晚上睡觉的时间、各种徽章、状态的认定等都是需要将今天的数据和昨天甚至更早的数据进行比较，也就是说网页中任何涉及到跨日期的功能、模块能够正常使用。"
+        "value": ""
       },
       "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)": {
         "tag": "select",
@@ -2247,8 +2259,17 @@
       "#sync-status-container": {
         "text": "同步状态：\n        待同步（有未上传更改）"
       },
+      "#sync-status-text": {
+        "text": "待同步（有未上传更改）"
+      },
       "#misc-notes-section": {
         "text": "📝\n        \n        \n         杂事记录 Miscellaneous Notes (MISC)\n        \n       \n      \n      \n       \n        \n         \n          📝 功能说明\n         \n         ：记录日常琐事、临时想法、待办提醒等零散信息。数据按日期独立存储，自动保存到本地，支持多格式导出。\n        \n       \n       \n       \n        \n        \n        \n        \n       \n       \n       \n        \n        \n         \n          \n           ➕\n          \n          \n           新增记录\n          \n         \n         \n          \n           🗑️\n          \n          \n           批量删除\n          \n         \n         \n          \n           ✓ 确认删除\n          \n          \n           ✕ 取消\n          \n         \n        \n        \n        \n                \n                    📝\n                    暂无记录，点击 ➕ 新增第一条记录\n                \n            \n        \n        \n         \n          \n           \n            编辑记录\n           \n          \n          \n           \n           \n          \n          \n           \n            取消\n           \n           \n            💾 保存\n           \n          \n         \n        \n       \n       \n        \n         📊 字符数：\n         \n          0\n         \n        \n        \n         💡 自动保存 | 按日期存储"
+      },
+      "#misc-notes-list": {
+        "text": "📝\n                    暂无记录，点击 ➕ 新增第一条记录"
+      },
+      "#misc-modal-title": {
+        "text": "编辑记录"
       },
       "#losing-days-display": {
         "text": "0"
@@ -2315,6 +2336,6 @@
       }
     },
     "_deviceId": "dev_ffbf290a71f2b7c6",
-    "_lastModified": "2026-02-01T12:14:24.912Z"
+    "_lastModified": "2026-02-01T13:35:21.913Z"
   }
 }
