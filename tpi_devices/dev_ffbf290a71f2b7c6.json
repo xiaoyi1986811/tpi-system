@@ -71,11 +71,11 @@
     "bonus-reason": "",
     "template-content-input": "",
     "tpi-rating": "poor",
-    "radar-time-mode": "none",
+    "radar-time-mode": "start",
     "radar-recurrence": "none",
     "radar-calendar-type": "solar",
     "radar-recurrence-count": "unlimited",
-    "radar-remind-advance": "0",
+    "radar-remind-advance": "1",
     "radar-remind-sameday": "0",
     "bcm-digital-status": "",
     "bcm-afternoon-status": "",
@@ -230,7 +230,7 @@
         "tag": "select",
         "type": "",
         "selector": "#radar-time-mode",
-        "value": "none"
+        "value": "start"
       },
       "#radar-time-start": {
         "tag": "input",
@@ -291,7 +291,7 @@
         "tag": "select",
         "type": "",
         "selector": "#radar-remind-advance",
-        "value": "0"
+        "value": "1"
       },
       "#radar-remind-sameday": {
         "tag": "select",
@@ -2336,6 +2336,6 @@
       }
     },
     "_deviceId": "dev_ffbf290a71f2b7c6",
-    "_lastModified": "2026-02-01T13:37:04.440Z"
+    "_lastModified": "2026-02-01T14:05:57.624Z"
   }
 }
