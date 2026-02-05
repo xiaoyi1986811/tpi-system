@@ -1,7 +1,6 @@
 // index.js - TPI 后端服务（Render 部署版）
 const express = require('express');
 const { Pool } = require('pg');
-require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,9 +25,7 @@ client.query('SELECT NOW()', (err, res) => {
 // 允许 JSON 请求体
 app.use(express.json());
 
-// ======================
-// 🩺 健康检查接口
-// ======================
+// 健康检查接口
 app.get('/api/time', (req, res) => {
   res.json({
     message: 'TPI Backend is running',
@@ -37,11 +34,7 @@ app.get('/api/time', (req, res) => {
   });
 });
 
-// ======================
-// ☁️ TPI 云端同步 API
-// ======================
-
-// POST /api/tpi → 保存当日数据
+// 保存 TPI 数据
 app.post('/api/tpi', async (req, res) => {
   const { date, data } = req.body;
   if (!date || !data) {
@@ -62,7 +55,7 @@ app.post('/api/tpi', async (req, res) => {
   }
 });
 
-// GET /api/tpi/history → 获取全部历史
+// 获取历史数据
 app.get('/api/tpi/history', async (req, res) => {
   try {
     const result = await client.query('SELECT date, data FROM tpi_records ORDER BY date DESC;');
@@ -78,9 +71,7 @@ app.get('/api/tpi/history', async (req, res) => {
   }
 });
 
-// ======================
-// 🚀 启动服务器
-// ======================
+// 启动服务器
 app.listen(port, () => {
   console.log(`✅ TPI 后端服务启动成功！监听端口: ${port}`);
 });
