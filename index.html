@@ -4691,6 +4691,17 @@ window.exportAsCSV = function() {
          ：将TPI数据同步到GitHub仓库，实现跨设备数据共享。数据以日期为键存储在tpi_db.json文件中。
         </p>
        </div>
+       
+       <!-- 🔑 新增：登录区域（初始显示） -->
+       <div id="cloud-login" style="margin:12px 0;">
+        <input type="text" id="cloud-username" placeholder="用户名" style="width:100%; padding:6px; margin:4px 0; border:1px solid #ccc; border-radius:4px;">
+        <input type="password" id="cloud-password" placeholder="密码" style="width:100%; padding:6px; margin:4px 0; border:1px solid #ccc; border-radius:4px;">
+        <button onclick="cloudLogin()" style="width:100%; padding:6px; background:#4CAF50; color:white; border:none; border-radius:4px; margin-top:6px;">登录以启用同步</button>
+        <p id="cloud-login-error" style="color:#f44336; font-size:12px; min-height:1.2em; margin-top:4px;"></p>
+       </div>
+       
+       <!-- 📦 原有同步控件（始终显示） -->
+       <div id="sync-controls">
 <!-- GitHub配置 - 已移除,改用专用后端 -->
        <div class="github-config-grid" style="display: none !important; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 15px; margin-bottom: 20px; align-items: end; max-width: 820px;">
         <div class="form-group">
@@ -4742,6 +4753,7 @@ window.exportAsCSV = function() {
           <strong>注意:</strong>同步前会自动保存当前输入的数据,确保不丢失任何内容。本地缓存仍然保留,作为离线降级方案。
          </p>
         </div>
+       </div>
        </div>
       </div>
      </section>
