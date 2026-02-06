@@ -1,0 +1,2336 @@
+{
+  "2026-02-07": {
+    "date-input": "2026-02-07",
+    "github-username": "xiaoyi1986811",
+    "github-repo": "tpi-system",
+    "github-branch": "main",
+    "bcm-morning-time": "",
+    "bcm-morning-yesterday-time": "",
+    "bcm-evening-exit": "",
+    "bcm-evening-yesterday": "",
+    "bcm-sleep-time": "",
+    "bcm-sleep-yesterday": "",
+    "tpi-total": 0,
+    "ma7-score": 0,
+    "ami-score": 0,
+    "fli-score": 0,
+    "sys-score": 0,
+    "bonus-score": 0,
+    "bcm-morning-score": 0,
+    "bcm-evening-score": 0,
+    "bcm-sleep-score": 0,
+    "bcm-digital-score": 0,
+    "bcm-afternoon-score": 0,
+    "hsm-core-score": 0,
+    "hsm-morning-score": 0,
+    "hsm-afternoon-score": 0,
+    "hsm-water-morning-score": 0,
+    "hsm-water-afternoon-score": 0,
+    "hsm-water-evening-score": 0,
+    "fli-core-score": 0,
+    "fli-fragment-score": 0,
+    "ignition-physical": false,
+    "ignition-micro-target": false,
+    "ignition-painless-start": false,
+    "start-morning-block": false,
+    "start-afternoon-block": false,
+    "start-evening-block": false,
+    "academic-dialogue": false,
+    "ami-scan-reading": false,
+    "fli-vn": false,
+    "fli-en": false,
+    "radar-reminder-active": false,
+    "radar-important": false,
+    "sync-core-axioms": false,
+    "sync-sop": false,
+    "sync-formulas": false,
+    "sync-version": false,
+    "sync-modules": false,
+    "sync-functions": false,
+    "sync-rules": false,
+    "sync-auto-backup": false,
+    "daily-summary": "",
+    "cliffhanger": "",
+    "first-action": "",
+    "daily-reflection": "",
+    "misc-edit-content": "",
+    "fli-core-notes": "",
+    "type-s-content-morning": "",
+    "type-s-content-afternoon": "",
+    "type-s-content-evening1": "",
+    "type-s-content-evening2": "",
+    "type-s-content-flexible": "",
+    "victory-1": "",
+    "victory-2": "",
+    "victory-3": "",
+    "radar-title": "",
+    "radar-location": "",
+    "radar-organizer": "",
+    "radar-remarks": "",
+    "json-import-area": "",
+    "bonus-reason": "",
+    "template-content-input": "",
+    "tpi-rating": "poor",
+    "radar-time-mode": "none",
+    "radar-recurrence": "none",
+    "radar-calendar-type": "solar",
+    "radar-recurrence-count": "unlimited",
+    "radar-remind-advance": "0",
+    "radar-remind-sameday": "0",
+    "bcm-digital-status": "",
+    "bcm-afternoon-status": "",
+    "hsm-core-status": "",
+    "hsm-morning-status": "",
+    "hsm-afternoon-status": "",
+    "hsm-water-morning-status": "",
+    "hsm-water-afternoon-status": "",
+    "hsm-water-evening-status": "",
+    "injection-mode": "",
+    "miscRecordsV1": [],
+    "checkinData": {
+      "dates": [],
+      "currentStreak": 0,
+      "maxStreak": 0
+    },
+    "_formState": {
+      "#_o_dbjbempljhcmhlfpfacalomonjpalpko": {
+        "tag": "input",
+        "type": "hidden",
+        "selector": "#_o_dbjbempljhcmhlfpfacalomonjpalpko",
+        "value": ""
+      },
+      "#date-input": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#date-input",
+        "value": "2026-02-07"
+      },
+      "#github-username": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#github-username",
+        "value": "xiaoyi1986811"
+      },
+      "#github-repo": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#github-repo",
+        "value": "tpi-system"
+      },
+      "#github-branch": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#github-branch",
+        "value": "main"
+      },
+      "#misc-records-json": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#misc-records-json",
+        "value": "{\"date\":\"2026-02-07\",\"records\":[]}"
+      },
+      "#misc-log-select-all": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#misc-log-select-all",
+        "checked": false,
+        "value": "on"
+      },
+      "#tpi-total": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#tpi-total",
+        "value": "0.0"
+      },
+      "#tpi-rating": {
+        "tag": "select",
+        "type": "",
+        "selector": "#tpi-rating",
+        "value": "poor"
+      },
+      "#ma7-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ma7-score",
+        "value": "0.0"
+      },
+      "#streak-days": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#streak-days",
+        "value": ""
+      },
+      "#losing-streak-days": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#losing-streak-days",
+        "value": ""
+      },
+      "#ami-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-score",
+        "value": "0.0"
+      },
+      "#fli-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#fli-score",
+        "value": "0.0"
+      },
+      "#sys-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#sys-score",
+        "value": "0.0"
+      },
+      "#bonus-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bonus-score",
+        "value": "0.0"
+      },
+      "#radar-event-type": {
+        "tag": "input",
+        "type": "hidden",
+        "selector": "#radar-event-type",
+        "value": ""
+      },
+      "#radar-event-id": {
+        "tag": "input",
+        "type": "hidden",
+        "selector": "#radar-event-id",
+        "value": ""
+      },
+      "#radar-title": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#radar-title",
+        "value": ""
+      },
+      "#radar-rich-editor": {
+        "tag": "div",
+        "type": "",
+        "selector": "#radar-rich-editor",
+        "contentEditable": true,
+        "text": "\n           "
+      },
+      "#radar-remarks": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#radar-remarks",
+        "value": ""
+      },
+      "#radar-files": {
+        "tag": "input",
+        "type": "file",
+        "selector": "#radar-files",
+        "value": ""
+      },
+      "#radar-date": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#radar-date",
+        "value": ""
+      },
+      "#radar-time-mode": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-time-mode",
+        "value": "none"
+      },
+      "#radar-time-start": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#radar-time-start",
+        "value": ""
+      },
+      "#radar-time-end": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#radar-time-end",
+        "value": ""
+      },
+      "#radar-recurrence": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-recurrence",
+        "value": "none"
+      },
+      "#radar-calendar-type": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-calendar-type",
+        "value": "solar"
+      },
+      "#radar-recurrence-count": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-recurrence-count",
+        "value": "unlimited"
+      },
+      "#radar-location": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#radar-location",
+        "value": ""
+      },
+      "#radar-organizer": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#radar-organizer",
+        "value": ""
+      },
+      "#radar-rich-editor-2": {
+        "tag": "div",
+        "type": "",
+        "selector": "#radar-rich-editor-2",
+        "contentEditable": true,
+        "text": "\n           "
+      },
+      "#radar-attachments": {
+        "tag": "input",
+        "type": "file",
+        "selector": "#radar-attachments",
+        "value": ""
+      },
+      "#radar-remind-advance": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-remind-advance",
+        "value": "0"
+      },
+      "#radar-remind-sameday": {
+        "tag": "select",
+        "type": "",
+        "selector": "#radar-remind-sameday",
+        "value": "0"
+      },
+      "#radar-reminder-active": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#radar-reminder-active",
+        "checked": false,
+        "value": "on"
+      },
+      "#radar-important": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#radar-important",
+        "checked": false,
+        "value": "on"
+      },
+      "#json-import-area": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#json-import-area",
+        "value": ""
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "high"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "low"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "none"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "major"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "flow"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "steady"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "clear"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(5) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "distracted"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(6) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "anxious"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "sufficient"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "searching"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "inspiration"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "weather"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "emergency"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "sick"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "material"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(5) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "meeting"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "hemingway"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "anxiety"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "hemingway"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "anxiety"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "no-reason"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "tweak"
+      },
+      "$#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(3) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#quarterback > div:nth-of-type(2) > div:nth-of-type(4) > div:nth-of-type(3) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#vacation-details > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#vacation-details > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "1"
+      },
+      "$#vacation-details > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#vacation-details > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "2"
+      },
+      "$#vacation-details > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#vacation-details > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "3"
+      },
+      "$#vacation-details > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#vacation-details > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "4"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "normal"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "stoic"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "vacation"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "normal"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "stoic"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "vacation"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "normal"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "stoic"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "vacation"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "normal"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "stoic"
+      },
+      "$#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#mixed-mode-selector > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "vacation"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "flow"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "warrior"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "balance"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "micro-victories"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "return"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "excellent"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "recovery"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "streak7"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(5) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "streak14"
+      },
+      "$#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#bonus > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(6) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "streak21"
+      },
+      "#bonus-reason": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bonus-reason",
+        "value": ""
+      },
+      "#ignition-physical": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#ignition-physical",
+        "checked": false,
+        "value": "on"
+      },
+      "#ignition-micro-target": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#ignition-micro-target",
+        "checked": false,
+        "value": "on"
+      },
+      "#ignition-painless-start": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#ignition-painless-start",
+        "checked": false,
+        "value": "on"
+      },
+      "#start-morning-block": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#start-morning-block",
+        "checked": false,
+        "value": "on"
+      },
+      "#start-afternoon-block": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#start-afternoon-block",
+        "checked": false,
+        "value": "on"
+      },
+      "#start-evening-block": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#start-evening-block",
+        "checked": false,
+        "value": "on"
+      },
+      "#academic-dialogue": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#academic-dialogue",
+        "checked": false,
+        "value": "on"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(5) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#type-s-score-morning": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#type-s-score-morning",
+        "value": ""
+      },
+      "#type-s-content-morning": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#type-s-content-morning",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "input"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "output"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(10) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(10) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(11) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(11) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#type-s-score-afternoon": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#type-s-score-afternoon",
+        "value": ""
+      },
+      "#type-s-content-afternoon": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#type-s-content-afternoon",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "input"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "output"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(10) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(10) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(11) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(11) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(5) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#type-s-score-evening1": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#type-s-score-evening1",
+        "value": ""
+      },
+      "#type-s-content-evening1": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#type-s-content-evening1",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "input"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "output"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(10) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(10) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(11) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(11) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(5) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#type-s-score-evening2": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#type-s-score-evening2",
+        "value": ""
+      },
+      "#type-s-content-evening2": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#type-s-content-evening2",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "input"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "output"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(10) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(10) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(11) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(11) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > div:nth-of-type(1) > input:nth-of-type(2)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(5) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(5) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#type-s-score-flexible": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#type-s-score-flexible",
+        "value": ""
+      },
+      "#type-s-content-flexible": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#type-s-content-flexible",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "input"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "radio",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "output"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(3) > div:nth-of-type(2) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(9) > div:nth-of-type(1) > select:nth-of-type(1)",
+        "value": "1.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(10) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(10) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(11) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#ami-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(11) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#ami-scan-reading": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#ami-scan-reading",
+        "checked": false,
+        "value": "1"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-morning-time": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-morning-time",
+        "value": ""
+      },
+      "#bcm-morning-yesterday-time": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-morning-yesterday-time",
+        "value": ""
+      },
+      "#bcm-morning-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-morning-score",
+        "value": "0"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-lunch-today-duration": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-lunch-today-duration",
+        "value": ""
+      },
+      "#bcm-lunch-yesterday-duration": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-lunch-yesterday-duration",
+        "value": ""
+      },
+      "#bcm-lunch-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-lunch-score",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-dinner-today-duration": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-dinner-today-duration",
+        "value": ""
+      },
+      "#bcm-dinner-yesterday-duration": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-dinner-yesterday-duration",
+        "value": ""
+      },
+      "#bcm-dinner-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-dinner-score",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-evening-exit": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-evening-exit",
+        "value": ""
+      },
+      "#bcm-evening-yesterday": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-evening-yesterday",
+        "value": ""
+      },
+      "#bcm-evening-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-evening-score",
+        "value": "0"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-sleep-time": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-sleep-time",
+        "value": ""
+      },
+      "#bcm-sleep-yesterday": {
+        "tag": "input",
+        "type": "time",
+        "selector": "#bcm-sleep-yesterday",
+        "value": ""
+      },
+      "#bcm-sleep-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-sleep-score",
+        "value": "0"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-digital-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm-digital-status",
+        "value": ""
+      },
+      "#bcm-digital-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-digital-score",
+        "value": "0.0"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#bcm-afternoon-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#bcm-afternoon-status",
+        "value": ""
+      },
+      "#bcm-afternoon-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#bcm-afternoon-score",
+        "value": "0.0"
+      },
+      "$#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(8) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#bcm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(8) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-core-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-core-status",
+        "value": ""
+      },
+      "#hsm-core-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-core-score",
+        "value": "0.0"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-morning-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-morning-status",
+        "value": ""
+      },
+      "#hsm-morning-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-morning-score",
+        "value": "0.0"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-afternoon-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-afternoon-status",
+        "value": ""
+      },
+      "#hsm-afternoon-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-afternoon-score",
+        "value": "0.0"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-water-morning-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-water-morning-status",
+        "value": ""
+      },
+      "#hsm-water-morning-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-water-morning-score",
+        "value": "0.00"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-water-afternoon-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-water-afternoon-status",
+        "value": ""
+      },
+      "#hsm-water-afternoon-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-water-afternoon-score",
+        "value": "0.00"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#hsm-water-evening-status": {
+        "tag": "select",
+        "type": "",
+        "selector": "#hsm-water-evening-status",
+        "value": ""
+      },
+      "#hsm-water-evening-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#hsm-water-evening-score",
+        "value": "0.00"
+      },
+      "$#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(6) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#hsm > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(6) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#fli-vn": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli-vn",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > label:nth-of-type(1) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > label:nth-of-type(1) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "#fli-en": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli-en",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > label:nth-of-type(2) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > label:nth-of-type(2) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#fli-core-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#fli-core-score",
+        "value": "0.0"
+      },
+      "#fli-core-notes": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#fli-core-notes",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(1) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(1) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(2) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(2) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(2) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(3) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(3) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(3) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(3) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "checkbox",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(4) > input:nth-of-type(1)",
+        "checked": false,
+        "value": "on"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(4) > span:nth-of-type(1) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > label:nth-of-type(4) > span:nth-of-type(1) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "#fli-fragment-score": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#fli-fragment-score",
+        "value": "0.0"
+      },
+      "$#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#fli > div:nth-of-type(2) > div:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(2) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(2) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(3) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(3) > select:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(4) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(4) > input:nth-of-type(1)",
+        "value": ""
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(5) > select:nth-of-type(1)": {
+        "tag": "select",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(5) > select:nth-of-type(1)",
+        "value": "0.1"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(6) > input:nth-of-type(1)": {
+        "tag": "input",
+        "type": "number",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(6) > input:nth-of-type(1)",
+        "value": "0.0"
+      },
+      "$#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(7) > textarea:nth-of-type(1)": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#logistics-table > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(7) > textarea:nth-of-type(1)",
+        "value": ""
+      },
+      "#daily-summary": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#daily-summary",
+        "value": ""
+      },
+      "#victory-1": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#victory-1",
+        "value": ""
+      },
+      "#victory-2": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#victory-2",
+        "value": ""
+      },
+      "#victory-3": {
+        "tag": "input",
+        "type": "text",
+        "selector": "#victory-3",
+        "value": ""
+      },
+      "#cliffhanger": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#cliffhanger",
+        "value": ""
+      },
+      "#first-action": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#first-action",
+        "value": ""
+      },
+      "#daily-reflection": {
+        "tag": "textarea",
+        "type": "",
+        "selector": "#daily-reflection",
+        "value": ""
+      },
+      "#import-file": {
+        "tag": "input",
+        "type": "file",
+        "selector": "#import-file",
+        "value": ""
+      },
+      "#export-start-date": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#export-start-date",
+        "value": "2026-02-07"
+      },
+      "#export-end-date": {
+        "tag": "input",
+        "type": "date",
+        "selector": "#export-end-date",
+        "value": "2026-02-07"
+      }
+    },
+    "_viewState": {
+      "#top-scoreboard-style": {
+        "text": ".top-scoreboard{\n      position: sticky;\n      top: 0;\n      z-index: 5000;\n      background: linear-gradient(135deg, rgba(224,231,255,.95) 0%, rgba(221,214,254,.95) 100%);\n      border-bottom: 1px solid rgba(148,163,184,.35);\n      box-shadow: 0 2px 10px rgba(0,0,0,0.06);\n      backdrop-filter: blur(8px);\n      -webkit-backdrop-filter: blur(8px);\n    }\n    .top-scoreboard-inner{\n      max-width: 1400px;\n      margin: 0 auto;\n      padding: 8px 14px;\n      display: flex;\n      align-items: center;\n      gap: 10px;\n      flex-wrap: nowrap;\n      overflow-x: auto;\n    }\n    .top-scoreboard-inner::-webkit-scrollbar{ height: 6px; }\n    .top-scoreboard-inner::-webkit-scrollbar-thumb{ background: rgba(148,163,184,.45); border-radius: 999px; }\n    .ts-item{\n      display: inline-flex;\n      align-items: baseline;\n      gap: 6px;\n      padding: 5px 10px;\n      border-radius: 10px;\n      background: rgba(255,255,255,0.55);\n      border: 1px solid rgba(148,163,184,.25);\n      white-space: nowrap;\n    }\n    .ts-label{ font-size: 11px; opacity: .9; }\n    .ts-value{ font-size: 16px; font-weight: 800; letter-spacing: .2px; }\n    .ts-sep{ width: 1px; height: 18px; background: rgba(148,163,184,.35); }\n    .ts-grow{ flex: 1 1 auto; }\n    .ts-total{\n      display: inline-flex;\n      align-items: baseline;\n      gap: 8px;\n      padding: 6px 12px;\n      border-radius: 12px;\n      background: rgba(37,99,235,.10);\n      border: 1px solid rgba(37,99,235,.18);\n      white-space: nowrap;\n    }\n    .ts-total-label{ font-size: 11px; opacity: .9; }\n    .ts-total-value{ font-size: 18px; font-weight: 900; }\n    .ts-rating{\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      padding: 6px 10px;\n      border-radius: 999px;\n      font-size: 12px;\n      font-weight: 800;\n      border: 1px solid rgba(148,163,184,.25);\n      background: rgba(255,255,255,0.65);\n      white-space: nowrap;\n    }\n    .ts-rating.is-excellent{ background: rgba(16,185,129,.18); border-color: rgba(16,185,129,.25); }\n    .ts-rating.is-steady{ background: rgba(59,130,246,.18); border-color: rgba(59,130,246,.25); }\n    .ts-rating.is-baseline{ background: rgba(245,158,11,.20); border-color: rgba(245,158,11,.25); }\n    .ts-rating.is-maintenance{ background: rgba(107,114,128,.18); border-color: rgba(107,114,128,.25); }\n    .ts-rating.is-overload{ background: rgba(239,68,68,.18); border-color: rgba(239,68,68,.25); }\n\n    /* 小屏更紧凑 */\n    @media (max-width: 520px){\n      .top-scoreboard-inner{ padding: 8px 10px; }\n      .ts-item{ padding: 5px 8px; border-radius: 9px; }\n      .ts-value{ font-size: 15px; }\n      .ts-total-value{ font-size: 17px; }\n    }"
+      },
+      "#top-scoreboard": {
+        "text": "📉 MA70.0\n      \n      📝 AMI0.0\n      \n      🧠 FLI0.0\n      \n      🧱 SYS0.0\n      \n      🎁 BONUS0.0\n\n      \n\n      \n        总分\n        0.0\n      \n      < 95 维护 (Maintenance)"
+      },
+      "#ts-total": {
+        "text": "0.0"
+      },
+      "#ts-rating": {
+        "text": "< 95 维护 (Maintenance)"
+      },
+      "#checkin-status-container": {
+        "text": "今日状态\n          ⏰ 未签到\n         \n         \n          连续签到\n          \n           0\n           天"
+      },
+      "#checkin-status-text": {
+        "text": "⏰ 未签到"
+      },
+      "#checkin-streak-display": {
+        "text": "0"
+      },
+      "#losing-days-display": {
+        "text": "0"
+      },
+      "#badge-tempLife-count": {
+        "text": "0"
+      },
+      "#badge-tempAcademic-count": {
+        "text": "0"
+      },
+      "#badge-regularLife-count": {
+        "text": "0"
+      },
+      "#badge-regularAcademic-count": {
+        "text": "0"
+      },
+      "#radar-modal-title": {
+        "text": "添加事件"
+      },
+      "#reminder-text": {
+        "text": "请根据当前模式调整今日的期望和策略。"
+      },
+      "#bonus-total-score": {
+        "text": "0.0"
+      },
+      "#yesterday-cliffhanger-text": {
+        "text": "读取中..."
+      },
+      "#ignition-total": {
+        "text": "0"
+      },
+      "#total-hours": {
+        "text": "0.0"
+      },
+      "#total-pages": {
+        "text": "0"
+      },
+      "#total-words": {
+        "text": "0"
+      },
+      "#ami-total-score": {
+        "text": "0.0"
+      },
+      "#bcm-lunch-status": {
+        "text": "等待输入..."
+      },
+      "#bcm-dinner-status": {
+        "text": "等待输入..."
+      },
+      "#bcm-total-score": {
+        "text": "0.0"
+      },
+      "#hsm-total-score": {
+        "text": "0.0"
+      },
+      "#fli-total-score": {
+        "text": "0.0"
+      },
+      "#logistics-total-score": {
+        "text": "0.0"
+      }
+    },
+    "_deviceId": "dev_8de52c8395e8c77c",
+    "_lastModified": "2026-02-06T18:39:46.466Z"
+  }
+}
